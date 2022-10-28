@@ -7,10 +7,19 @@ on:
     branches: [ "main" ]
     
 jobs:
-  test:
+  build_images:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: start build script
-        run: chmod +x test.sh && ./test.sh
+      - name: Build Node Docker Image
+        run: docker build elixir/client/Dockerfile --file Dockerfile 
+      - name: Build Elixir Docker Image
+        run: docker build elixir/Dockerfile --file Dockerfile
+  
+  test_deployment: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run build script
+        run: chmod +x build.sh && ./build.sh 
 
