@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: start build script
-        run: chmod +x build.sh && ./build.sh
+        run: chmod +x test.sh && ./test.sh
 
