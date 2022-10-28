@@ -1,0 +1,7 @@
+- name: Git pull task
+  hosts: all
+  tasks:
+     - name: run git pull
+       git:
+        repo: git@github.com:Mav-Joel/Merci.git
+        dest: /home/admin/Merci
