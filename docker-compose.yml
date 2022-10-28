@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  tm-phoenix:
+    container_name: tm-phoenix
+    build: ./elixir/.
+    volumes:
+      - ./elixir:/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      tm-db:
+        condition: service_healthy
+    links:
+      - tm-db
+
+  tm-node:
+    container_name: tm-node
+    build: ./elixir/client/.
+    ports:
+      - "8080:8080"
+    depends_on:
+      tm-db:
+        condition: service_healthy
+    links:
+      - tm-db
+
+  tm-db:
+    container_name: tm-db
+    image: postgres:15
+    environment:
+      POSTGRES_DB: time_manager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./postgres/pgdata:/var/lib/postgresql/data
