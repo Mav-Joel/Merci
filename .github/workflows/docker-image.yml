@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Node Docker Image
-        run: docker build elixir/client/Dockerfile --file Dockerfile 
+        run: docker build elixir/client --file Dockerfile 
       - name: Build Elixir Docker Image
-        run: docker build elixir/Dockerfile --file Dockerfile
+        run: docker build elixir --file Dockerfile
   
   test_deployment: 
     runs-on: ubuntu-latest
