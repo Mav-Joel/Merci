@@ -9,17 +9,29 @@ on:
 jobs:
   build_images:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: time_manager
+          POSTGRES_USER: postgres
+          PGDATA: /var/lib/postgresql/data/pgdata
+      
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        
+        volumes:
+        - ./postgres/pgdata:/var/lib/postgresql/data
+        
     steps:
       - uses: actions/checkout@v2
       - name: Build Node Docker Image
         run: docker build elixir/client/ 
       - name: Build Elixir Docker Image
         run: docker build elixir/
-  
-  test_deployment: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run build script
-        run: chmod +x .ci_cd.sh && ./.ci_cd.sh 
-
