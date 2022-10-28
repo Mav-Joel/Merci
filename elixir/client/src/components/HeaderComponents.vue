@@ -17,6 +17,7 @@
           <v-tab @click="goToLogin()"> Login </v-tab>
           <v-tab @click="goToRegister()"> Register </v-tab>
           <v-tab @click="goToProfil()"> My Collabarators </v-tab>
+          <v-tab @click="goToAdmin()"> Admin </v-tab>
           <v-tabs-slider color="pink"></v-tabs-slider>
         </v-tabs>
       </template>
@@ -68,6 +69,9 @@ export default {
     },
     goToProfil() {
       this.$router.push("/mycollaborators");
+    },
+    goToAdmin() {
+      this.$router.push("/adminpage").catch(() => {});
     },
   },
 
