@@ -1,10 +1,13 @@
 import Vue from "vue";
+import MyCollaborators from "../views/MyCollaborators.vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginPage from "../views/LoginPage.vue";
 import registerPage from "../views/RegisterPage.vue";
-import MyCollaborators from "../views/MyCollaborators.vue";
 import MyProfileAdmin from "../views/MyProfileAdmin.vue";
+
+// import FooterPage from "../views/FooterPage";
+
 Vue.use(VueRouter);
 
 const routes = [

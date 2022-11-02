@@ -1,4 +1,4 @@
-defmodule Api.Account.Workingtimes do
+defmodule Api.Accounts.Workingtimes do
   use Ecto.Schema
   import Ecto.Changeset
 

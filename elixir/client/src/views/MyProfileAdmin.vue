@@ -5,15 +5,15 @@
         <thead>
           <tr>
             <th class="text-left">Name</th>
+
             <th class="text-left">Calories</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in user.data" v-bind:key="user">
+          <tr v-for="user in user.data" v-bind:key="user.username">
             <td>{{ user["email"] }}</td>
             <td>{{ user["username"] }}</td>
             <v-btn
-              :loading="loading"
               class="ma-1"
               color="error"
               plain
@@ -21,51 +21,49 @@
             >
               Delete
             </v-btn>
-            <v-btn
-              :loading="loading"
-              class="ma-1"
-              color="green"
-              plain
-              @click="remove"
-            >
-              Delete
-            </v-btn>
+            <UpdateModal />
           </tr>
         </tbody>
       </template>
     </v-simple-table>
-    <div class="my-2">
-      <v-btn color="warning" fab dark></v-btn>
-    </div>
+    <CreationModal />
   </v-app>
 </template>
 
 <script>
 import axios from "axios";
+import CreationModal from "@/components/CreationModal.vue";
+import UpdateModal from "@/components/UpdateModal.vue";
+
 export default {
   data() {
     return {
       user: [],
     };
   },
+  components: {
+    CreationModal,
+    UpdateModal,
+  },
 
   mounted() {
     axios({
       method: "get",
-
-      url: "http://3.86.160.80:8080/",
+      url: "http://localhost:4000/api/users/",
       format: "json",
-    }).then((response) => (this.user = response.data));
+    }).then((response) =>
+      response ? (this.user = response.data) : console.log("yikers")
+    );
   },
   methods: {
-    async deleteCustomer(id) {
+    deleteCustomer(id) {
+      
       axios({
         method: "delete",
-        url: `http://3.86.160.80:8080/api/users/${id}`,
+        url: `http://localhost:4000/api/users/${id}`,
         format: "json",
       }).then((data) => {
         console.log(data);
-        window.location.reload();
       });
     },
   },

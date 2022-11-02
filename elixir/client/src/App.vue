@@ -4,9 +4,6 @@
       <HeaderComponents />
     </header>
     <router-view />
-    <div>
-      <FooterPage />
-    </div>
   </div>
 </template>
 
@@ -33,12 +30,11 @@ nav {
 </style>
 <script>
 import HeaderComponents from "@/components/HeaderComponents.vue";
-import FooterPage from "@/components/FooterPage.vue";
+
 export default {
   name: "HomeView",
   components: {
     HeaderComponents,
-    FooterPage,
   },
 };
 </script>

@@ -18,35 +18,11 @@
           <v-tab @click="goToRegister()"> Register </v-tab>
           <v-tab @click="goToProfil()"> My Collabarators </v-tab>
           <v-tab @click="goToAdmin()"> Admin </v-tab>
+
           <v-tabs-slider color="pink"></v-tabs-slider>
         </v-tabs>
       </template>
     </v-toolbar>
-    <!-- <v-card-text>
-      <v-tabs-items v-model="tabs">
-        <v-tab-item
-          v-for="content in ['one', 'two', 'three']"
-          :key="content"
-          :value="content"
-        >
-          <v-card height="200px" flat> </v-card>
-        </v-tab-item>
-      </v-tabs-items>
-    </v-card-text> -->
-    <!-- <v-fab-transition>
-      <v-btn
-        :key="activeFab.icon"
-        :color="activeFab.color"
-        fab
-        large
-        dark
-        bottom
-        left
-        class="v-btn--example"
-      >
-        <v-icon>{{ activeFab.icon }}</v-icon>
-      </v-btn>
-    </v-fab-transition> -->
   </v-card>
 </template>
 <script>
@@ -74,21 +50,6 @@ export default {
       this.$router.push("/adminpage").catch(() => {});
     },
   },
-
-  // computed: {
-  //   activeFab() {
-  //     switch (this.tabs) {
-  //       case "one":
-  //         return { color: "success", icon: "mdi-share-variant" };
-  //       case "two":
-  //         return { color: "red", icon: "mdi-pencil" };
-  //       case "three":
-  //         return { color: "green", icon: "mdi-chevron-up" };
-  //       default:
-  //         return {};
-  //     }
-  //   },
-  // },
 };
 </script>
 <style>

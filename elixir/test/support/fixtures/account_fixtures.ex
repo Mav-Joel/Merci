@@ -14,7 +14,7 @@ defmodule Api.AccountFixtures do
         end: ~U[2022-10-24 12:26:00Z],
         start: ~U[2022-10-24 12:26:00Z]
       })
-      |> Api.Account.create_workingtimes()
+      |> Api.Accounts.create_workingtimes()
 
     workingtimes
   end
@@ -29,7 +29,7 @@ defmodule Api.AccountFixtures do
         end: ~U[2022-10-24 14:19:00Z],
         start: ~U[2022-10-24 14:19:00Z]
       })
-      |> Api.Account.create_workingtimes()
+      |> Api.Accounts.create_workingtimes()
 
     workingtimes
   end
@@ -44,7 +44,7 @@ defmodule Api.AccountFixtures do
         end: ~U[2022-10-24 14:21:00Z],
         start: ~U[2022-10-24 14:21:00Z]
       })
-      |> Api.Account.create_workingtimes()
+      |> Api.Accounts.create_workingtimes()
 
     workingtimes
   end
@@ -59,7 +59,7 @@ defmodule Api.AccountFixtures do
         end: ~U[2022-10-24 14:36:00Z],
         start: ~U[2022-10-24 14:36:00Z]
       })
-      |> Api.Account.create_workingtimes()
+      |> Api.Accounts.create_workingtimes()
 
     workingtimes
   end
@@ -74,7 +74,7 @@ defmodule Api.AccountFixtures do
         end: ~U[2022-10-24 14:44:00Z],
         start: ~U[2022-10-24 14:44:00Z]
       })
-      |> Api.Account.create_workingtimes()
+      |> Api.Accounts.create_workingtimes()
 
     workingtimes
   end
@@ -89,7 +89,7 @@ defmodule Api.AccountFixtures do
         end: ~U[2022-10-24 15:01:00Z],
         start: ~U[2022-10-24 15:01:00Z]
       })
-      |> Api.Account.create_workingtimes()
+      |> Api.Accounts.create_workingtimes()
 
     workingtimes
   end
