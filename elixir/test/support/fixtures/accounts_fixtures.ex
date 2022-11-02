@@ -169,4 +169,19 @@ defmodule Api.AccountsFixtures do
 
     clock
   end
+
+  @doc """
+  Generate a team.
+  """
+  def team_fixture(attrs \\ %{}) do
+    {:ok, team} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        teamNumber: "some teamNumber"
+      })
+      |> Api.Accounts.create_team()
+
+    team
+  end
 end

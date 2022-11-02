@@ -5,6 +5,3 @@
       git:
         repo: git@github.com:Mav-Joel/Merci.git
         dest: /home/admin/Merci
-        
-    - name: Execute the build.sh script
-      ansible.builtin.shell: /home/admin/Merci/build.sh

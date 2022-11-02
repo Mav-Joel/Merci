@@ -10,6 +10,13 @@ defmodule ApiWeb.Endpoint do
     signing_salt: "VnY5dsRr"
   ]
 
+  plug CORSPlug, origin: ["*"]
+  plug Plug.Static,
+    at: "/",
+    from: :api,
+    gzip: false,
+    only: ~w(assets fonts images favicon.ico robots.txt) 
+
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.

@@ -27,6 +27,7 @@ defmodule ApiWeb.Router do
     resources "/users", UserController
     resources "/clocks", ClockController, except: [:new, :edit]
     resources "/workingtime", WorkingtimesController, except: [:new, :edit]
+    resources "/team", TeamController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

@@ -620,4 +620,60 @@ defmodule Api.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_clock(clock)
     end
   end
+
+  describe "team" do
+    alias Api.Accounts.Team
+
+    import Api.AccountsFixtures
+
+    @invalid_attrs %{name: nil, teamNumber: nil}
+
+    test "list_team/0 returns all team" do
+      team = team_fixture()
+      assert Accounts.list_team() == [team]
+    end
+
+    test "get_team!/1 returns the team with given id" do
+      team = team_fixture()
+      assert Accounts.get_team!(team.id) == team
+    end
+
+    test "create_team/1 with valid data creates a team" do
+      valid_attrs = %{name: "some name", teamNumber: "some teamNumber"}
+
+      assert {:ok, %Team{} = team} = Accounts.create_team(valid_attrs)
+      assert team.name == "some name"
+      assert team.teamNumber == "some teamNumber"
+    end
+
+    test "create_team/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_team(@invalid_attrs)
+    end
+
+    test "update_team/2 with valid data updates the team" do
+      team = team_fixture()
+      update_attrs = %{name: "some updated name", teamNumber: "some updated teamNumber"}
+
+      assert {:ok, %Team{} = team} = Accounts.update_team(team, update_attrs)
+      assert team.name == "some updated name"
+      assert team.teamNumber == "some updated teamNumber"
+    end
+
+    test "update_team/2 with invalid data returns error changeset" do
+      team = team_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_team(team, @invalid_attrs)
+      assert team == Accounts.get_team!(team.id)
+    end
+
+    test "delete_team/1 deletes the team" do
+      team = team_fixture()
+      assert {:ok, %Team{}} = Accounts.delete_team(team)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_team!(team.id) end
+    end
+
+    test "change_team/1 returns a team changeset" do
+      team = team_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_team(team)
+    end
+  end
 end
