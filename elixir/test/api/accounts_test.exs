@@ -626,7 +626,7 @@ defmodule Api.AccountsTest do
 
     import Api.AccountsFixtures
 
-    @invalid_attrs %{name: nil, teamNumber: nil}
+    @invalid_attrs %{name: nil}
 
     test "list_team/0 returns all team" do
       team = team_fixture()
@@ -639,11 +639,10 @@ defmodule Api.AccountsTest do
     end
 
     test "create_team/1 with valid data creates a team" do
-      valid_attrs = %{name: "some name", teamNumber: "some teamNumber"}
+      valid_attrs = %{name: "some name"}
 
       assert {:ok, %Team{} = team} = Accounts.create_team(valid_attrs)
       assert team.name == "some name"
-      assert team.teamNumber == "some teamNumber"
     end
 
     test "create_team/1 with invalid data returns error changeset" do
@@ -652,11 +651,9 @@ defmodule Api.AccountsTest do
 
     test "update_team/2 with valid data updates the team" do
       team = team_fixture()
-      update_attrs = %{name: "some updated name", teamNumber: "some updated teamNumber"}
 
       assert {:ok, %Team{} = team} = Accounts.update_team(team, update_attrs)
       assert team.name == "some updated name"
-      assert team.teamNumber == "some updated teamNumber"
     end
 
     test "update_team/2 with invalid data returns error changeset" do
@@ -674,6 +671,128 @@ defmodule Api.AccountsTest do
     test "change_team/1 returns a team changeset" do
       team = team_fixture()
       assert %Ecto.Changeset{} = Accounts.change_team(team)
+    end
+  end
+
+  describe "users" do
+    alias Api.Accounts.User
+
+    import Api.AccountsFixtures
+
+    @invalid_attrs %{email: nil, password: nil, role: nil, team: nil, username: nil}
+
+    test "list_users/0 returns all users" do
+      user = user_fixture()
+      assert Accounts.list_users() == [user]
+    end
+
+    test "get_user!/1 returns the user with given id" do
+      user = user_fixture()
+      assert Accounts.get_user!(user.id) == user
+    end
+
+    test "create_user/1 with valid data creates a user" do
+      valid_attrs = %{email: "some email", password: "some password", role: "some role", team: "some team", username: "some username"}
+
+      assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
+      assert user.email == "some email"
+      assert user.password == "some password"
+      assert user.role == "some role"
+      assert user.team == "some team"
+      assert user.username == "some username"
+    end
+
+    test "create_user/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
+    end
+
+    test "update_user/2 with valid data updates the user" do
+      user = user_fixture()
+      update_attrs = %{email: "some updated email", password: "some updated password", role: "some updated role", team: "some updated team", username: "some updated username"}
+
+      assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
+      assert user.email == "some updated email"
+      assert user.password == "some updated password"
+      assert user.role == "some updated role"
+      assert user.team == "some updated team"
+      assert user.username == "some updated username"
+    end
+
+    test "update_user/2 with invalid data returns error changeset" do
+      user = user_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
+      assert user == Accounts.get_user!(user.id)
+    end
+
+    test "delete_user/1 deletes the user" do
+      user = user_fixture()
+      assert {:ok, %User{}} = Accounts.delete_user(user)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
+    end
+
+    test "change_user/1 returns a user changeset" do
+      user = user_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_user(user)
+    end
+  end
+
+  describe "users" do
+    alias Api.Accounts.User
+
+    import Api.AccountsFixtures
+
+    @invalid_attrs %{email: nil, password: nil, role: nil, username: nil}
+
+    test "list_users/0 returns all users" do
+      user = user_fixture()
+      assert Accounts.list_users() == [user]
+    end
+
+    test "get_user!/1 returns the user with given id" do
+      user = user_fixture()
+      assert Accounts.get_user!(user.id) == user
+    end
+
+    test "create_user/1 with valid data creates a user" do
+      valid_attrs = %{email: "some email", password: "some password", role: "some role", username: "some username"}
+
+      assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
+      assert user.email == "some email"
+      assert user.password == "some password"
+      assert user.role == "some role"
+      assert user.username == "some username"
+    end
+
+    test "create_user/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
+    end
+
+    test "update_user/2 with valid data updates the user" do
+      user = user_fixture()
+      update_attrs = %{email: "some updated email", password: "some updated password", role: "some updated role", username: "some updated username"}
+
+      assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
+      assert user.email == "some updated email"
+      assert user.password == "some updated password"
+      assert user.role == "some updated role"
+      assert user.username == "some updated username"
+    end
+
+    test "update_user/2 with invalid data returns error changeset" do
+      user = user_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
+      assert user == Accounts.get_user!(user.id)
+    end
+
+    test "delete_user/1 deletes the user" do
+      user = user_fixture()
+      assert {:ok, %User{}} = Accounts.delete_user(user)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
+    end
+
+    test "change_user/1 returns a user changeset" do
+      user = user_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
   end
 end

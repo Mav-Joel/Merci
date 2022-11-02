@@ -4,7 +4,6 @@ defmodule Api.Repo.Migrations.CreateTeam do
   def change do
     create table(:team) do
       add :name, :string
-      add :teamNumber, :string
 
       timestamps()
     end

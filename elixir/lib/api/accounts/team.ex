@@ -4,7 +4,6 @@ defmodule Api.Accounts.Team do
 
   schema "team" do
     field :name, :string
-    field :teamNumber, :string
 
     timestamps()
   end
@@ -12,7 +11,7 @@ defmodule Api.Accounts.Team do
   @doc false
   def changeset(team, attrs) do
     team
-    |> cast(attrs, [:name, :teamNumber])
-    |> validate_required([:name, :teamNumber])
+    |> cast(attrs, [:name])
+    |> validate_required([:name])
   end
 end

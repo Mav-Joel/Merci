@@ -5,7 +5,7 @@ defmodule ApiWeb.UserController do
   alias Api.Accounts.User
 
   action_fallback ApiWeb.FallbackController
-  
+
   def getpassword(conn, %{"email" => email}) do
     user = Accounts.get_password_by_email(email)
     render(conn, "password.json", user: user)
@@ -27,7 +27,7 @@ defmodule ApiWeb.UserController do
     |> Accounts.get_by()
     |> Bcrypt.verify_pass("" ,password)
   end
-
+  
   def create(conn, %{"user" => user_params}) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn

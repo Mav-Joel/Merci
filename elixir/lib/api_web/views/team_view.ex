@@ -14,7 +14,6 @@ defmodule ApiWeb.TeamView do
     %{
       id: team.id,
       name: team.name,
-      teamNumber: team.teamNumber
     }
   end
 end

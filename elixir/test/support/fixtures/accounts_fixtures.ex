@@ -178,10 +178,44 @@ defmodule Api.AccountsFixtures do
       attrs
       |> Enum.into(%{
         name: "some name",
-        teamNumber: "some teamNumber"
       })
       |> Api.Accounts.create_team()
 
     team
+  end
+
+  @doc """
+  Generate a user.
+  """
+  def user_fixture(attrs \\ %{}) do
+    {:ok, user} =
+      attrs
+      |> Enum.into(%{
+        email: "some email",
+        password: "some password",
+        role: "some role",
+        team: "some team",
+        username: "some username"
+      })
+      |> Api.Accounts.create_user()
+
+    user
+  end
+
+  @doc """
+  Generate a user.
+  """
+  def user_fixture(attrs \\ %{}) do
+    {:ok, user} =
+      attrs
+      |> Enum.into(%{
+        email: "some email",
+        password: "some password",
+        role: "some role",
+        username: "some username"
+      })
+      |> Api.Accounts.create_user()
+
+    user
   end
 end

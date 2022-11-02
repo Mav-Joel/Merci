@@ -7,13 +7,11 @@ defmodule ApiWeb.TeamControllerTest do
 
   @create_attrs %{
     name: "some name",
-    teamNumber: "some teamNumber"
   }
   @update_attrs %{
     name: "some updated name",
-    teamNumber: "some updated teamNumber"
   }
-  @invalid_attrs %{name: nil, teamNumber: nil}
+  @invalid_attrs %{name: nil}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -36,7 +34,6 @@ defmodule ApiWeb.TeamControllerTest do
       assert %{
                "id" => ^id,
                "name" => "some name",
-               "teamNumber" => "some teamNumber"
              } = json_response(conn, 200)["data"]
     end
 
@@ -58,7 +55,6 @@ defmodule ApiWeb.TeamControllerTest do
       assert %{
                "id" => ^id,
                "name" => "some updated name",
-               "teamNumber" => "some updated teamNumber"
              } = json_response(conn, 200)["data"]
     end
 
