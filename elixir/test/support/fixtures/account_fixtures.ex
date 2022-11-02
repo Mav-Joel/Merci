@@ -1,7 +1,7 @@
 defmodule Api.AccountFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Api.Account` context.
+  entities via the `Api.Accounts` context.
   """
 
   @doc """

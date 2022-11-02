@@ -3,7 +3,7 @@ defmodule ApiWeb.WorkingtimesControllerTest do
 
   import Api.AccountFixtures
 
-  alias Api.Account.Workingtimes
+  alias Api.Accounts.Workingtimes
 
   @create_attrs %{
     end: ~U[2022-10-24 15:01:00Z],
