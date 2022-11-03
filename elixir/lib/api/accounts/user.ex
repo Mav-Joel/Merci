@@ -6,9 +6,8 @@ defmodule Api.Accounts.User do
     field :email, :string
     field :password, :string
     field :role, :string, default: "user"
-    field :token, :string
     field :username, :string
-    field :team, :id, default: 1
+    field :team, :id, default: 0
 
     timestamps()
   end
@@ -16,16 +15,7 @@ defmodule Api.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :email, :password, :role,:team, :token])
-    |> validate_required([:username, :email, :password, :role,:team, :token])
-    |> validate_format(:email, ~r/^[A-Za-z0-9._%+-+']+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
-    |> encrypt_and_put_password()
-  end
-
- defp encrypt_and_put_password(user) do
-    with password <- fetch_field!(user, :password) do
-      encrypted_password = Bcrypt.hash_pwd_salt(password)
-      put_change(user, :password, encrypted_password)
-    end
+    |> cast(attrs, [:username, :email, :password, :role, :team])
+    |> validate_required([:username, :email, :password, :role, :team])
   end
 end

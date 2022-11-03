@@ -412,3 +412,4 @@ defmodule Api.Accounts do
   def change_team(%Team{} = team, attrs \\ %{}) do
     Team.changeset(team, attrs)
   end
+end

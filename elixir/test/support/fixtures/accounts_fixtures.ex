@@ -229,7 +229,6 @@ defmodule Api.AccountsFixtures do
         email: "some email",
         password: "some password",
         role: "some role",
-        token: "some token",
         username: "some username"
       })
       |> Api.Accounts.create_user()

@@ -3,8 +3,8 @@ defmodule ApiWeb.UserController do
 
   alias Api.Accounts
   alias Api.Accounts.User
+  alias Api.Guardian
 
-  action_fallback ApiWeb.FallbackController
 
   def getpassword(conn, %{"email" => email}) do
     user = Accounts.get_password_by_email(email)

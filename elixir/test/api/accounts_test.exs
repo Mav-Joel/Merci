@@ -801,7 +801,7 @@ defmodule Api.AccountsTest do
 
     import Api.AccountsFixtures
 
-    @invalid_attrs %{email: nil, password: nil, role: nil, token: nil, username: nil}
+    @invalid_attrs %{email: nil, password: nil, role: nil, username: nil}
 
     test "list_users/0 returns all users" do
       user = user_fixture()
@@ -814,13 +814,12 @@ defmodule Api.AccountsTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{email: "some email", password: "some password", role: "some role", token: "some token", username: "some username"}
+      valid_attrs = %{email: "some email", password: "some password", role: "some role", username: "some username"}
 
       assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
       assert user.email == "some email"
       assert user.password == "some password"
       assert user.role == "some role"
-      assert user.token == "some token"
       assert user.username == "some username"
     end
 
@@ -830,13 +829,12 @@ defmodule Api.AccountsTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{email: "some updated email", password: "some updated password", role: "some updated role", token: "some updated token", username: "some updated username"}
+      update_attrs = %{email: "some updated email", password: "some updated password", role: "some updated role", username: "some updated username"}
 
       assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
       assert user.email == "some updated email"
       assert user.password == "some updated password"
       assert user.role == "some updated role"
-      assert user.token == "some updated token"
       assert user.username == "some updated username"
     end
 

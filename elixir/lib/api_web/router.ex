@@ -10,52 +10,52 @@ defmodule ApiWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
+pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug
   end
 
-  scope "/", ApiWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
+  pipeline :ensure_auth do
+    plug Api.Guardian.AuthPipeline
   end
 
-  # Other scopes may use custom stacks.
+  scope "/api/admin" do
+  end
+
   scope "/api", ApiWeb do
     pipe_through :api
-
-    resources "/users", UserController
-    resources "/clocks", ClockController, except: [:new, :edit]
-    resources "/workingtime", WorkingtimesController, except: [:new, :edit]
     resources "/team", TeamController, except: [:new, :edit]
+
+    post "/users/login", UserController, :login
+    options "/users/login", UserController, :options
+    post "/users/register", UserController, :register
+    options "/users/register", UserController, :options
+    post "/users/refresh", UserController, :refresh
+    options "/users/refresh", UserController, :options
   end
 
-  # Enables LiveDashboard only for development
-  #
-  # If you want to use the LiveDashboard in production, you should put
-  # it behind authentication and allow only admins to access it.
-  # If your application does not have an admins-only section yet,
-  # you can use Plug.BasicAuth to set up some basic authentication
-  # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  scope "/api", ApiWeb do
+    pipe_through [:api, :ensure_auth]
+  
+    #Users
+    get "/users/:id", UserController, :show
+    get "/users", UserController, :index
+    put "/users", UserController, :update
+    delete "/users", UserController, :delete
+    post "/users/logout", UserController, :logout
+    options "/users/logout", UserController, :options
 
-    scope "/" do
-      pipe_through :browser
+    #WorkingTimes
+    get "/workingtimes", WorkingtimeController, :show
+    get "/workingtimes/one/:id", WorkingtimeController, :singleWorkingTime
+    post "/workingtimes", WorkingtimeController, :createByUser
+    options "/workingtimes", WorkingtimeController, :options
+    put "/workingtimes/:id", WorkingtimeController, :update
+    delete "/workingtimes/:id", WorkingtimeController, :delete
 
-      live_dashboard "/dashboard", metrics: ApiWeb.Telemetry
-    end
-  end
-
-  # Enables the Swoosh mailbox preview in development.
-  #
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
-  if Mix.env() == :dev do
-    scope "/dev" do
-      pipe_through :browser
-
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
-    end
+    #clocks
+    get "/clocks", ClockController, :show
+    post "/clocks", ClockController, :createByUser
+    options "/clocks", ClockController, :options
   end
 end

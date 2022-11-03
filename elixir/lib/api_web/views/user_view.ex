@@ -17,7 +17,13 @@ defmodule ApiWeb.UserView do
       email: user.email,
       password: user.password,
       role: user.role,
-      token: user.token
     }
+  end
+
+  def render("token.json", %{user_token_info: token}) do
+   %{
+    access_token: token.access_token,
+    userId: token.userId
+   }
   end
 end
