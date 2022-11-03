@@ -32,6 +32,7 @@ pipeline :api do
     options "/users/register", UserController, :options
     post "/users/refresh", UserController, :refresh
     options "/users/refresh", UserController, :options
+    get "/users", UserController, :index
   end
 
   scope "/api", ApiWeb do

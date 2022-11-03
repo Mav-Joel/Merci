@@ -23,7 +23,7 @@ defmodule ApiWeb.UserController do
         true -> handle_tokens(conn, user)
         false ->
           conn
-          |> send_resp(401, Jason.encode!(%{error: "Unauthorized"}))
+          |> send_resp(200, Jason.encode!(%{error: "connection failed"}))
       end
     end
   end
