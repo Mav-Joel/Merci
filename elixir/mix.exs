@@ -49,7 +49,7 @@ defmodule Api.MixProject do
       {:gettext, "~> 0.18"},
       {:plug_cowboy, "~> 2.5"},
       {:bcrypt_elixir, "~> 3.0"},
-      {:cors_plug, "~> 3.0"}
+      {:cors_plug, "~> 3.0"},
       {:joken, "~> 2.5"},
       {:jason, "~> 1.3"},
       {:guardian, "~> 2.3.0"}
