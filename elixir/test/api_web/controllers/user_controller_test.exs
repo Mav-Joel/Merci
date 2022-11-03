@@ -9,15 +9,17 @@ defmodule ApiWeb.UserControllerTest do
     email: "some email",
     password: "some password",
     role: "some role",
+    token: "some token",
     username: "some username"
   }
   @update_attrs %{
     email: "some updated email",
     password: "some updated password",
     role: "some updated role",
+    token: "some updated token",
     username: "some updated username"
   }
-  @invalid_attrs %{email: nil, password: nil, role: nil, username: nil}
+  @invalid_attrs %{email: nil, password: nil, role: nil, token: nil, username: nil}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -42,6 +44,7 @@ defmodule ApiWeb.UserControllerTest do
                "email" => "some email",
                "password" => "some password",
                "role" => "some role",
+               "token" => "some token",
                "username" => "some username"
              } = json_response(conn, 200)["data"]
     end
@@ -66,6 +69,7 @@ defmodule ApiWeb.UserControllerTest do
                "email" => "some updated email",
                "password" => "some updated password",
                "role" => "some updated role",
+               "token" => "some updated token",
                "username" => "some updated username"
              } = json_response(conn, 200)["data"]
     end

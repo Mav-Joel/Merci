@@ -7,7 +7,8 @@ defmodule Api.Repo.Migrations.CreateUsers do
       add :email, :string
       add :password, :string
       add :role, :string, default: "user"
-      add :team, references(:team), default: 1
+      add :token, :string
+      add :team, references(:team, on_delete: :nothing), default: 1
 
       timestamps()
     end

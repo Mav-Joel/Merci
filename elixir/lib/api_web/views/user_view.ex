@@ -10,23 +10,14 @@ defmodule ApiWeb.UserView do
     %{data: render_one(user, UserView, "user.json")}
   end
 
-  def render("index.json", %{user: user}) do
-    %{data: render_one(user, UserView, "password.json")}
-  end
-
-  def render("password.json", %{user: user}) do
-    %{
-      password: user.password,
-    }
-  end
-
   def render("user.json", %{user: user}) do
     %{
       id: user.id,
       username: user.username,
       email: user.email,
       password: user.password,
-      team: user.team
+      role: user.role,
+      token: user.token
     }
   end
 end

@@ -218,4 +218,22 @@ defmodule Api.AccountsFixtures do
 
     user
   end
+
+  @doc """
+  Generate a user.
+  """
+  def user_fixture(attrs \\ %{}) do
+    {:ok, user} =
+      attrs
+      |> Enum.into(%{
+        email: "some email",
+        password: "some password",
+        role: "some role",
+        token: "some token",
+        username: "some username"
+      })
+      |> Api.Accounts.create_user()
+
+    user
+  end
 end
