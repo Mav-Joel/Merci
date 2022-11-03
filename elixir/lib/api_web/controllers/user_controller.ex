@@ -11,6 +11,53 @@ defmodule ApiWeb.UserController do
     render(conn, "password.json", user: user)
   end
 
+  def register(conn, %{"user" => user_params}) do
+    with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
+      handle_tokens(conn, user)      
+    end
+  end
+
+  def login(conn, %{"email" => email, "password" => password}) do
+    with user <- Accounts.get_by_email!(email) do
+      case Bcrypt.verify_pass(password, user.password) do
+        true -> handle_tokens(conn, user)
+        false ->
+          conn
+          |> send_resp(401, Jason.encode!(%{error: "Unauthorized"}))
+      end
+    end
+  end
+
+  def refresh(conn, _params) do
+    refresh_token = Plug.Conn.fetch_cookies(conn) |> Map.from_struct() |> get_in([:cookies, "refresh_token"])
+
+    case Api.Guardian.exchange(refresh_token, "refresh", "access") do
+      {:ok, _old, {access_token, _new}} ->
+
+      data = %{access_token: access_token, userId: nil}
+        conn
+        |> put_status(:created)
+        |> render("token.json", user_token_info: data)
+    end
+  end
+
+  defp handle_tokens(conn, user) do
+    {:ok, access_token, _claims} = Api.Guardian.encode_and_sign(user, %{id: user.id}, token_type: "access", ttl: {1, :hour})
+    {:ok, refresh_token, _claims} = Api.Guardian.encode_and_sign(user, %{id: user.id}, token_type: "refresh", ttl: {30, :day})
+    data = %{access_token: access_token, userId: user.id}
+    conn
+    |> put_status(:created)
+    |> put_resp_header("location", Routes.user_path(conn, :show, user))
+    |> put_resp_cookie("refresh_token", refresh_token)
+    |> render("token.json", user_token_info: data)
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> put_status(:no_content)
+    |> delete_resp_cookie("refresh_token")
+  end
+
   def index(conn, %{"email" => email, "password" => password}) do
     hash = Bcrypt.hash_pwd_salt(password)
     users = Accounts.get_user_by_email_and_password(email, hash)

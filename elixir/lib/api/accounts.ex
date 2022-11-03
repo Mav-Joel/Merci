@@ -49,6 +49,7 @@ defmodule Api.Accounts do
 
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_by_email!(email), do: Repo.get_by!(User, email: email)
   @doc """
   Creates a user.
 
@@ -211,6 +212,16 @@ defmodule Api.Accounts do
   end
 
   alias Api.Accounts.Clock
+
+  def authenticate_user(email, password) do
+    with {:ok, user} <- get_by_email!(email) do
+      case Bcrypt.verify_pass(password, user.password) do
+        true -> {:ok, user}
+        false -> {:error, :unauthorized}
+      end
+    end
+  end
+
 
   @doc """
   Returns the list of clocks.
