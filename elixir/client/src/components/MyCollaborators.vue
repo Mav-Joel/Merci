@@ -57,7 +57,7 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://localhost:4000api/users/",
+      url: "http://localhost:4000/api/users/",
       format: "json",
     }).then((response) => (this.user = response.data));
   },

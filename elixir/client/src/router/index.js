@@ -21,6 +21,11 @@ const routes = [
     component: LoginPage,
   },
   {
+    path: "/",
+    name: "beforeLog",
+    component: LoginPage,
+  },
+  {
     path: "/mycollaborators/:id",
     name: "mycollaborators",
     component: MyCollaborators,
