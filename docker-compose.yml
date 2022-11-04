@@ -14,16 +14,16 @@ services:
     links:
       - tm-db
 
-  # tm-node:
-  #   container_name: tm-node
-  #   build: ./elixir/client/.
-  #   ports:
-  #     - "8080:8080"
-  #   depends_on:
-  #     tm-db:
-  #       condition: service_healthy
-  #   links:
-  #     - tm-db
+  tm-node:
+    container_name: tm-node
+    build: ./elixir/client/.
+    ports:
+      - "8080:8080"
+    depends_on:
+      tm-db:
+        condition: service_healthy
+    links:
+      - tm-db
 
   tm-db:
     container_name: tm-db
