@@ -3,7 +3,11 @@
     <header>
       <HeaderComponents />
     </header>
-    <router-view />
+
+    <router-view> 
+      
+    </router-view>
+    <FooterPage />
   </div>
 </template>
 
@@ -30,11 +34,13 @@ nav {
 </style>
 <script>
 import HeaderComponents from "@/components/HeaderComponents.vue";
+import FooterPage from "@/components/FooterPage.vue";
 
 export default {
   name: "HomeView",
   components: {
     HeaderComponents,
+    FooterPage,
   },
 };
 </script>

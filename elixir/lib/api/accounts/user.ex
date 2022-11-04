@@ -7,7 +7,7 @@ defmodule Api.Accounts.User do
     field :password, :string
     field :role, :string, default: "user"
     field :username, :string
-    field :team, :id, default: 0
+    field :team, :id, default: 1
 
     timestamps()
   end

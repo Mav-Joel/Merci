@@ -1,5 +1,4 @@
 <template>
-  <div id="app">
     <v-app id="inspire">
       <div>
         <v-sheet tile height="54" class="d-flex">
@@ -53,7 +52,6 @@
         </v-sheet>
       </div>
     </v-app>
-  </div>
 </template>
 
 <script>

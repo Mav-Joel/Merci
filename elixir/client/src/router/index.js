@@ -1,18 +1,17 @@
 import Vue from "vue";
-import MyCollaborators from "../views/MyCollaborators.vue";
+import MyCollaborators from "../components/MyCollaborators.vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import LoginPage from "../views/LoginPage.vue";
-import registerPage from "../views/RegisterPage.vue";
-import MyProfileAdmin from "../views/MyProfileAdmin.vue";
-
+import HomeView from "../components/HomeView.vue";
+import LoginPage from "../components/LoginPage.vue";
+import registerPage from "../components/RegisterPage.vue";
+import MyProfileAdmin from "../components/MyProfileAdmin.vue";
 // import FooterPage from "../views/FooterPage";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/home/:id",
     name: "home",
     component: HomeView,
   },
@@ -22,7 +21,7 @@ const routes = [
     component: LoginPage,
   },
   {
-    path: "/mycollaborators",
+    path: "/mycollaborators/:id",
     name: "mycollaborators",
     component: MyCollaborators,
   },
@@ -32,13 +31,14 @@ const routes = [
     component: registerPage,
   },
   {
-    path: "/adminpage",
+    path: "/adminpage/:id",
     name: "adminpage",
     component: MyProfileAdmin,
   },
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
 });
 

@@ -23,7 +23,8 @@ defmodule ApiWeb.UserView do
   def render("token.json", %{user_token_info: token}) do
    %{
     access_token: token.access_token,
-    userId: token.userId
+    userId: token.userId,
+    username: token.username
    }
   end
 end

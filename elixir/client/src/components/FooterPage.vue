@@ -1,4 +1,5 @@
 <template>
+<div id="app">
   <v-footer dark padless>
     <v-card flat tile class="indigo lighten-1 white--text text-center">
       <v-card-text>
@@ -8,7 +9,6 @@
           </v-icon>
         </v-btn>
       </v-card-text>
-
       <v-card-text class="white--text pt-0">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
         Mauris cursus commodo interdum. Praesent ut risus eget metus luctus
@@ -27,6 +27,7 @@
       </v-card-text>
     </v-card>
   </v-footer>
+  </div>
 </template>
 <script>
 export default {
