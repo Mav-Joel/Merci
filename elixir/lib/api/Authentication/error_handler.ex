@@ -1,4 +1,4 @@
-defmodule App.AuthErrorHandler do
+defmodule Api.Guardian.ErrorHandler do
     import Plug.Conn
 
     @behaviour Guardian.Plug.ErrorHandler
