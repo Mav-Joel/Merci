@@ -47,12 +47,12 @@ pipeline :api do
     options "/users/logout", UserController, :options
 
     #WorkingTimes
-    get "/workingtimes", WorkingtimeController, :show
-    get "/workingtimes/one/:id", WorkingtimeController, :singleWorkingTime
-    post "/workingtimes", WorkingtimeController, :createByUser
-    options "/workingtimes", WorkingtimeController, :options
-    put "/workingtimes/:id", WorkingtimeController, :update
-    delete "/workingtimes/:id", WorkingtimeController, :delete
+    get "/workingtimes", WorkingtimesController, :show
+    get "/workingtimes/one/:id", WorkingtimesController, :singleWorkingTime
+    post "/workingtimes", WorkingtimesController, :createByUser
+    options "/workingtimes", WorkingtimesController, :options
+    put "/workingtimes/:id", WorkingtimesController, :update
+    delete "/workingtimes/:id", WorkingtimesController, :delete
 
     #clocks
     get "/clocks", ClockController, :show
