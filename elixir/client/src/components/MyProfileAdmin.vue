@@ -80,6 +80,7 @@ export default {
           id: user.id,
         },
       }).then((data) => {
+        window.location.reload();
         console.log(data);
       });
     },

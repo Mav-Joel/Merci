@@ -84,6 +84,7 @@ export default {
         .then((data) => {
           this.message = data.data.message;
           this.errorCredentials = false;
+          window.location.reload();
           setTimeout(() => {
             this.sendAlert();
           }, 2500);
