@@ -40,3 +40,11 @@ services:
       retries: 5
     volumes:
       - ./postgres/pgdata:/var/lib/postgresql/data
+
+  tm-adminer:
+    container_name: tm-adminer
+    image: adminer
+    ports:
+      - 8000:8080
+    depends_on:
+      - tm-db

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-content>
+      <v-main>
         <v-container fluid fill-height>
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4>
               <ul id="example-1">
-                <li v-for="user in user.data" v-bind:key="user">
+                <li v-for="user in user.data" v-bind:key="user.id">
                   <div class="card-user">
                     <v-card class="mx-auto" max-width="344" outlined>
                       <v-list-item three-line>
@@ -40,7 +40,7 @@
             </v-flex>
           </v-layout>
         </v-container>
-      </v-content>
+      </v-main>
     </v-app>
   </div>
 </template>
@@ -54,8 +54,8 @@ export default {
     };
   },
 
-  mounted() {
-    axios({
+  async mounted() {
+    await axios({
       method: "get",
       url: "http://localhost:4000/api/users/",
       format: "json",

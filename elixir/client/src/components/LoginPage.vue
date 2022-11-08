@@ -11,7 +11,12 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
-                    <v-text-field v-model="email" name="Email" label="Email" type="text">
+                    <v-text-field
+                      v-model="email"
+                      name="Email"
+                      label="Email"
+                      type="text"
+                    >
                     </v-text-field>
                     <v-text-field
                       id="password"
@@ -24,7 +29,7 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn v-on:click="postLogin" color="primary">Login</v-btn>
+                  <v-btn v-on:click="postLogin()" color="primary">Login</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -36,7 +41,6 @@
 </template>
 
 <script>
-
 import router from "@/router";
 import axios from "axios";
 
@@ -45,7 +49,7 @@ export default {
     return {
       email: this.email,
       password: this.password,
-      hidden: false
+      hidden: false,
     };
   },
 
@@ -53,24 +57,26 @@ export default {
     postLogin() {
       console.log(this.email);
       console.log(this.password);
-      
-      axios.post('http://localhost:4000/api/users/login', {
-        email: this.email,
-        password: this.password,
-      }).then(({ data }) => {
-        console.log(data)
-        localStorage.token = data.access_token;
-        localStorage.id = data.userId;
-        localStorage.name = data.username;
 
-        router.push("/");
+      axios
+        .post("http://localhost:4000/api/users/login", {
+          email: this.email,
+          password: this.password,
+        })
+        .then(({ data }) => {
+          console.log(data);
+          localStorage.token = data.access_token;
+          localStorage.id = data.userId;
+          localStorage.name = data.username;
 
-      }).catch(function (error) {
-        console.log(error.toJSON());
-      });
+          router.push("/");
+        })
+        .catch(function (error) {
+          console.log(error.toJSON());
+        });
 
-    }
-  }
-
+      this.$router.push("/home");
+    },
+  },
 };
 </script>

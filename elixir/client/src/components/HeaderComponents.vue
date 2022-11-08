@@ -14,21 +14,25 @@
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
         <template v-slot:extension>
-          <v-tabs v-model="tabs" align-with-title>
-            <v-tab v-if="hidden_1" @click="goToLogin()"> Login </v-tab>
-            <v-tab v-if="hidden_1" @click="goToRegister()"> Register </v-tab>
-            <v-tab v-if="hidden" @click="goToProfil()"> My Collabarators </v-tab>
-            <v-tab v-if="hidden" @click="goToAdmin()"> {{name}} </v-tab>
-            <v-tab v-if="hidden" @click="LogOut()"> LogOut </v-tab>
-            <v-tabs-slider color="pink"></v-tabs-slider>
-          </v-tabs>
+          <keep-alive>
+            <v-tabs v-model="tabs" align-with-title>
+              <v-tab v-if="hidden_1" @click="goToLogin()"> Login </v-tab>
+              <v-tab v-if="hidden_1" @click="goToRegister()"> Register </v-tab>
+              <v-tab v-if="hidden" @click="goToProfil()">
+                My Collabarators
+              </v-tab>
+              <v-tab v-if="hidden" @click="goToAdmin()"> {{ name }} </v-tab>
+              <v-tab v-if="hidden" @click="LogOut()"> LogOut </v-tab>
+              <v-tabs-slider color="pink"></v-tabs-slider>
+            </v-tabs>
+          </keep-alive>
         </template>
       </v-toolbar>
     </v-card>
   </div>
 </template>
 <script>
-import router from "@/router";
+// import router from "@/router";
 import axios from "axios";
 
 export default {
@@ -38,7 +42,8 @@ export default {
     hidden_1: true,
     tabs: null,
     name: localStorage.name,
-    token: false,
+    token: localStorage.token,
+    id: localStorage.id,
   }),
   mounted() {
     const token = localStorage.token;
@@ -55,32 +60,33 @@ export default {
       this.$router.push("/register");
     },
     goToHome() {
-      this.$router.push("/home/:id");
+      this.$router.push("/home");
     },
     goToProfil() {
-      this.$router.push("/mycollaborators/:id");
+      this.$router.push("/mycollaborators");
     },
     goToAdmin() {
-      this.$router.push("/adminpage/:id").catch(() => {});
+      this.$router.push("/adminpage").catch(() => {});
     },
 
     LogOut() {
-      axios.post('http://localhost:4000/api/users/logout').then(({ data }) => {
-        console.log(data)
-        localStorage.removeItem('token');
-        localStorage.removeItem('id');
-        localStorage.removeItem('username');
-
-        router.push("/");
-
-      }).catch(function (error) {
-        console.log(error.toJSON());
+      axios({
+        method: "post",
+        url: `http://localhost:4000/api/users/logout`,
+        format: "json",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      }).then(({ data }) => {
+        console.log(data);
       });
-
-    }
-
+      window.localStorage.clear();
+      window.localStorage.removeItem("name", "id", "token");
+      this.hidden_1 = true;
+      this.hidden = false;
+      this.$router.push("/login");
+    },
   },
-    
 };
 </script>
 <style>

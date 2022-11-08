@@ -80,7 +80,7 @@ export default {
       };
 
       await axios
-        .post("http://localhost:4000/api/users/", user)
+        .post("http://localhost:4000/api/users/register", user)
         .then((data) => {
           this.message = data.data.message;
           this.errorCredentials = false;
