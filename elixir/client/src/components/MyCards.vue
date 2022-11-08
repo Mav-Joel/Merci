@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-main>
+      <v-content>
         <v-container fluid fill-height>
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4>
@@ -26,17 +26,17 @@
                     ></v-list-item-avatar>
                   </v-list-item>
                   <v-card-actions>
-                    <v-btn outlined rounded text> Start of you're day </v-btn>
+                    <v-btn outlined rounded text> Update </v-btn>
                   </v-card-actions>
                   <v-card-actions>
-                    <v-btn outlined rounded text> End of you're ay </v-btn>
+                    <v-btn outlined rounded text> Delete </v-btn>
                   </v-card-actions>
                 </v-card>
               </div>
             </v-flex>
           </v-layout>
         </v-container>
-      </v-main>
+      </v-content>
     </v-app>
   </div>
 </template>
@@ -53,15 +53,12 @@ export default {
   },
 
   mounted(id) {
-    id = localStorage.id;
+    id = this.$route.params.id;
     console.log("1", id);
     axios({
       method: "get",
-      url: `http://localhost:4000/api/users/${localStorage.id}`,
+      url: `http://localhost:4000/api/users/${id}`,
       format: "json",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
     }).then(({ data }) => {
       this.user.email = data.data.email;
       this.user.username = data.data.username;

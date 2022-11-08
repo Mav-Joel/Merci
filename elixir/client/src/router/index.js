@@ -11,22 +11,22 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/home",
+    path: "/home/:id",
     name: "home",
     component: HomeView,
   },
-  // {
-  //   path: "/login",
-  //   name: "login",
-  //   component: LoginPage,
-  // },
   {
     path: "/login",
+    name: "login",
+    component: LoginPage,
+  },
+  {
+    path: "/",
     name: "beforeLog",
     component: LoginPage,
   },
   {
-    path: "/mycollaborators",
+    path: "/mycollaborators/:id",
     name: "mycollaborators",
     component: MyCollaborators,
   },
@@ -36,7 +36,7 @@ const routes = [
     component: registerPage,
   },
   {
-    path: "/adminpage",
+    path: "/adminpage/:id",
     name: "adminpage",
     component: MyProfileAdmin,
   },

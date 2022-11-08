@@ -6,6 +6,7 @@
           <thead>
             <tr>
               <th class="text-left">Name</th>
+
               <th class="text-left">Calories</th>
             </tr>
           </thead>
@@ -17,7 +18,7 @@
                 class="ma-1"
                 color="error"
                 plain
-                @click="deleteCustomer(user)"
+                @click="deleteCustomer(user.id)"
               >
                 Delete
               </v-btn>
@@ -40,7 +41,6 @@ export default {
   data() {
     return {
       user: [],
-      // token: "",
     };
   },
   components: {
@@ -58,27 +58,11 @@ export default {
     );
   },
   methods: {
-    deleteCustomer(user) {
-      // axios.delete(`http://localhost:4000/api/users/${localStorage.token}`, {
-      //   headers: {
-      //     Authorization: `Bearer ${localStorage.token}`,
-      //   },
-      //   // data: {
-      //   //   source: source,
-      //   // },
-      // });
+    deleteCustomer(id) {
       axios({
         method: "delete",
-        url: `http://localhost:4000/api/users/`,
+        url: `http://localhost:4000/api/users/${id}`,
         format: "json",
-        headers: {
-          // "Content-Type": "application/json",
-          // Accept: "application/json",
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-        data: {
-          id: user.id,
-        },
       }).then((data) => {
         console.log(data);
       });

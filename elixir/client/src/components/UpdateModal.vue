@@ -84,12 +84,12 @@ export default {
   methods: {
     editCustomer(id, fuck) {
       console.log("1", id);
+      // console.log("2",);
       const user = {
         user: {
           username: fuck.username,
           email: fuck.email,
           password: fuck.password,
-          id: fuck.id,
         },
       };
       console.log("3", user);
