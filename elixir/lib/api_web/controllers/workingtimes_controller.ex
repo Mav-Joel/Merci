@@ -11,12 +11,11 @@ defmodule ApiWeb.WorkingtimesController do
     render(conn, "index.json", workingtime: workingtime)
   end
 
-  def create(conn, %{"workingtimes" => workingtimes_params}) do
+  def createByUser(conn, %{"workingtimes" => workingtimes_params}) do
     with {:ok, %Workingtimes{} = workingtimes} <- Accounts.create_workingtimes(workingtimes_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", Routes.workingtimes_path(conn, :show, workingtimes))
-      |> render("show.json", workingtimes: workingtimes)
+      |> render("workingtimes.json", workingtimes: workingtimes)
     end
   end
 

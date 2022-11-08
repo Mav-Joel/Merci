@@ -17,6 +17,7 @@ defmodule ApiWeb.UserView do
       email: user.email,
       password: user.password,
       role: user.role,
+      team: user.team,
     }
   end
 
