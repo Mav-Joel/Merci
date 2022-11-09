@@ -20,15 +20,24 @@
             </tr>
           </thead>
           <tbody>
-            <p>{{ workingtimes }}</p>
-            <tr v-for="workingtime in data" v-bind:key="workingtime.id">
+            <tr
+              v-for="workingtime in workingtime.data"
+              v-bind:key="workingtime.id"
+            >
               <td>{{ workingtime["id"] }}</td>
               <td>{{ workingtime["start"] }}</td>
               <td>{{ workingtime["end"] }}</td>
               <v-btn class="mx-2" fab dark small color="cyan">
                 <v-icon dark> mdi-pencil </v-icon>
               </v-btn>
-              <v-btn class="mx-2" fab dark small color="primary">
+              <v-btn
+                @click="deleteWorkingTime(workingtime.id)"
+                class="mx-2"
+                fab
+                dark
+                small
+                color="primary"
+              >
                 <v-icon dark> mdi-minus </v-icon>
               </v-btn>
             </tr>
@@ -53,8 +62,8 @@ export default {
       workingtime: [],
     };
   },
-  async mounted() {
-    await axios({
+  mounted() {
+    axios({
       method: "get",
       url: `http://localhost:4000/api/workingtimes`,
       format: "json",
@@ -63,6 +72,24 @@ export default {
       },
     }).then((response) => (this.workingtime = response.data)),
       console.log(this.workingtime);
+  },
+
+  methods: {
+    deleteWorkingTime(id) {
+      axios({
+        method: "delete",
+        url: `http://localhost:4000/api/workingtimes/${id}`,
+        format: "json",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      }).then(() => window.location.reload());
+    },
+
+    postWorkingTime() {
+
+        
+    }
   },
 };
 </script>
