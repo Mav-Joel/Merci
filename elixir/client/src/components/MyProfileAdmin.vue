@@ -59,21 +59,11 @@ export default {
   },
   methods: {
     deleteCustomer(user) {
-      // axios.delete(`http://localhost:4000/api/users/${localStorage.token}`, {
-      //   headers: {
-      //     Authorization: `Bearer ${localStorage.token}`,
-      //   },
-      //   // data: {
-      //   //   source: source,
-      //   // },
-      // });
       axios({
         method: "delete",
         url: `http://localhost:4000/api/users/`,
         format: "json",
         headers: {
-          // "Content-Type": "application/json",
-          // Accept: "application/json",
           Authorization: `Bearer ${localStorage.token}`,
         },
         data: {
