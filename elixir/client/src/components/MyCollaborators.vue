@@ -6,12 +6,15 @@
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4>
               <div id="example-1">
+                <!-- <p>{{ user }}</p>
+                <p>{{ team }}</p> -->
                 <div v-for="team in team.data" v-bind:key="team.id">
-                  <div v-show="team.id === 1">
-                    <p>TEAM : {{ team["name"] }}</p>
-                  </div>
+                  <p>TEAM : {{ team["name"] }}</p>
                   <div v-for="user in user.data" v-bind:key="user.id">
-                    <div v-if="team.id === 1">
+                    <div
+                      v-if="team.id === user.team && user.role === user"
+                    ></div>
+                    <div v-if="team.id === user.team">
                       <div class="card-user">
                         <v-card class="mx-auto" max-width="344" outlined>
                           <v-list-item three-line>
@@ -61,13 +64,12 @@ export default {
       method: "get",
       url: "http://localhost:4000/api/users/",
       format: "json",
-    }).then((response) => (this.user = response.data));
-
-    axios({
-      method: "get",
-      url: "http://localhost:4000/api/team",
-      format: "json",
-    }).then((response) => (this.team = response.data));
+    }).then((response) => (this.user = response.data)),
+      axios({
+        method: "get",
+        url: "http://localhost:4000/api/team",
+        format: "json",
+      }).then((response) => (this.team = response.data));
   },
 };
 </script>
