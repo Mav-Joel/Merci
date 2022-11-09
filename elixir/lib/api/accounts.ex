@@ -144,7 +144,19 @@ defmodule Api.Accounts do
       ** (Ecto.NoResultsError)
 
   """
+  def get_workingtimes_by_userId(user_id) do
+    Workingtimes
+    |> where(user: ^user_id) 
+    |> Repo.all()
+  end
+
   def get_workingtimes!(id), do: Repo.get!(Workingtimes, id)
+  
+  
+
+
+
+  def get_by_email!(email), do: Repo.get_by!(User, email: email)
 
   @doc """
   Creates a workingtimes.

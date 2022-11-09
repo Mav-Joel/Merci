@@ -7,8 +7,8 @@ defmodule ApiWeb.WorkingtimesController do
   action_fallback ApiWeb.FallbackController
 
   def index(conn, _params) do
-    workingtime = Accounts.list_workingtime()
-    render(conn, "index.json", workingtime: workingtime)
+    workingtimes = Accounts.list_workingtime()
+    render(conn, "index.json", workingtimes: workingtimes)
   end
 
   def createByUser(conn, %{"workingtimes" => workingtimes_params}) do
@@ -19,8 +19,13 @@ defmodule ApiWeb.WorkingtimesController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    workingtimes = Accounts.get_workingtimes!(id)
+  # def get_time_by_userId_n_id(conn, %{"id" => id, "userId" => userId}) do
+  #   time = Working.get_time_by_userId_n_id(id, userId)
+  #   render(conn, "show.json", time: time)
+  # end
+
+  def show(conn, %{"id" => user_id}) do
+    workingtimes = Accounts.get_workingtimes_by_userId(user_id)
     render(conn, "index.json", workingtimes: workingtimes)
   end
 

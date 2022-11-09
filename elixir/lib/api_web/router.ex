@@ -48,7 +48,7 @@ pipeline :api do
 
     #WorkingTimes
     get "/workingtimes", WorkingtimesController, :index
-    get "/workingtimes/one/:id", WorkingtimesController, :singleWorkingTime
+    get "/workingtimes/:id", WorkingtimesController, :show
     post "/workingtimes", WorkingtimesController, :createByUser
     options "/workingtimes", WorkingtimesController, :options
     put "/workingtimes/:id", WorkingtimesController, :update
