@@ -4,9 +4,7 @@
       <HeaderComponents />
     </header>
 
-    <router-view> 
-      
-    </router-view>
+    <router-view> </router-view>
     <FooterPage />
   </div>
 </template>
