@@ -21,7 +21,7 @@ defmodule ApiWeb.WorkingtimesController do
 
   def show(conn, %{"id" => id}) do
     workingtimes = Accounts.get_workingtimes!(id)
-    render(conn, "show.json", workingtimes: workingtimes)
+    render(conn, "index.json", workingtimes: workingtimes)
   end
 
   def update(conn, %{"id" => id, "workingtimes" => workingtimes_params}) do

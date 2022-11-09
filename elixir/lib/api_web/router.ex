@@ -47,7 +47,7 @@ pipeline :api do
     options "/users/logout", UserController, :options
 
     #WorkingTimes
-    get "/workingtimes", WorkingtimesController, :show
+    get "/workingtimes", WorkingtimesController, :index
     get "/workingtimes/one/:id", WorkingtimesController, :singleWorkingTime
     post "/workingtimes", WorkingtimesController, :createByUser
     options "/workingtimes", WorkingtimesController, :options
