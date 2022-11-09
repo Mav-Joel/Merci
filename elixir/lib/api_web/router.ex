@@ -55,7 +55,7 @@ pipeline :api do
     delete "/workingtimes/:id", WorkingtimesController, :delete
 
     #clocks
-    get "/clocks", ClockController, :show
+    get "/clocks", ClockController, :index
     post "/clocks", ClockController, :createByUser
     options "/clocks", ClockController, :options
   end

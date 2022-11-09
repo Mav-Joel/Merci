@@ -3,8 +3,8 @@ defmodule Api.Accounts.Clock do
   import Ecto.Changeset
 
   schema "clocks" do
-    field :status, :naive_datetime
-    field :time, :string
+    field :status, :boolean
+    field :time, :utc_datetime
     field :user, :id
 
     timestamps()
