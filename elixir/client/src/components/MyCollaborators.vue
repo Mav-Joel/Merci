@@ -54,8 +54,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      user: null,
-      team: null,
+      user: [],
+      team: [],
     };
   },
 

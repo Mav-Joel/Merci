@@ -5,15 +5,21 @@ import HomeView from "../components/HomeView.vue";
 import LoginPage from "../components/LoginPage.vue";
 import registerPage from "../components/RegisterPage.vue";
 import MyProfileAdmin from "../components/MyProfileAdmin.vue";
+import MyWorkingTimes from "../components/MyWorkingTimes.vue";
 // import FooterPage from "../views/FooterPage";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/MyWorkingTimes",
+    name: "/MyWorkingTimes",
+    component: MyWorkingTimes,
   },
   // {
   //   path: "/login",

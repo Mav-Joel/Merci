@@ -1,19 +1,22 @@
 <template>
-  <Bar
-    :chart-options="chartOptions"
-    :chart-data="chartData"
-    :chart-id="chartId"
-    :dataset-id-key="datasetIdKey"
-    :plugins="plugins"
-    :css-classes="cssClasses"
-    :styles="styles"
-    :width="width"
-    :height="height"
-  />
+  <div id="app">
+    <Bar
+      :chart-options="chartOptions"
+      :chart-data="chartData"
+      :chart-id="chartId"
+      :dataset-id-key="datasetIdKey"
+      :plugins="plugins"
+      :css-classes="cssClasses"
+      :styles="styles"
+      :width="width"
+      :height="height"
+    />
+  </div>
 </template>
 
 <script>
 import { Bar } from "vue-chartjs/legacy";
+import axios from "axios";
 
 import {
   Chart as ChartJS,
@@ -71,6 +74,7 @@ export default {
   },
   data() {
     return {
+      workingtimes: null,
       chartData: {
         labels: [
           "January",
@@ -99,6 +103,14 @@ export default {
         maintainAspectRatio: false,
       },
     };
+  },
+
+  Mounted() {
+    axios({
+      method: "get",
+      url: "http://localhost:4000/api/workingtimes",
+      format: "json",
+    }).then((response) => (this.workingtimes = response.data));
   },
 };
 </script>

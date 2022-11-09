@@ -71,3 +71,9 @@ export default {
   },
 };
 </script>
+<style>
+.v-main {
+  max-width: 50%;
+  max-height: 50%;
+}
+</style>

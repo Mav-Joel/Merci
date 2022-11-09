@@ -18,6 +18,7 @@
             <v-tabs v-model="tabs" align-with-title>
               <v-tab v-if="hidden_1" @click="goToLogin()"> Login </v-tab>
               <v-tab v-if="hidden_1" @click="goToRegister()"> Register </v-tab>
+              <v-tab v-if="hidden" @click="goToHome()"> My TimeManager </v-tab>
               <v-tab v-if="hidden" @click="goToProfil()">
                 My Collabarators
               </v-tab>
@@ -60,7 +61,7 @@ export default {
       this.$router.push("/register");
     },
     goToHome() {
-      this.$router.push("/home");
+      this.$router.push("/");
     },
     goToProfil() {
       this.$router.push("/mycollaborators");
