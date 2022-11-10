@@ -6,8 +6,8 @@ defmodule ApiWeb.WorkingtimesView do
     %{data: render_many(workingtimes, WorkingtimesView, "workingtimes.json")}
   end
 
-  def render("show.json", %{workingtime: workingtime}) do
-    %{data: render_one(workingtime, WorkingtimesView, "workingtimes.json")}
+  def render("show.json", %{workingtimes: workingtimes}) do
+    %{data: render_one(workingtimes, WorkingtimesView, "workingtimes.json")}
   end
 
   def render("workingtimes.json", %{workingtimes: workingtimes}) do
