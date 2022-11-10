@@ -5,7 +5,6 @@ RUN apt-get update && \
     postgresql-client \
     inotify-tools \
     nodejs && \
-    curl -L https://npmjs.org/install.sh | sh && \
     mix local.hex --force && \
     mix archive.install hex phx_new 1.5.3 --force && \
     mix local.rebar --force
