@@ -45,6 +45,7 @@
         </template>
       </v-simple-table>
     </div>
+    <CreationModal />
     <MyCards />
   </div>
 </template>
@@ -52,10 +53,12 @@
 <script>
 import axios from "axios";
 import MyCards from "./MyCards.vue";
+import CreationModal from "./CreationModal.vue";
 export default {
   name: "HomeView",
   components: {
     MyCards,
+    CreationModal,
   },
   data() {
     return {
@@ -86,10 +89,7 @@ export default {
       }).then(() => window.location.reload());
     },
 
-    postWorkingTime() {
-
-        
-    }
+    
   },
 };
 </script>
