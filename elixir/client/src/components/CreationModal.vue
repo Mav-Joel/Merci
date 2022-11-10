@@ -135,6 +135,7 @@ export default {
       url: window.location.pathname,
       start: "",
       end: "",
+      user: "",
     };
   },
 
@@ -153,7 +154,6 @@ export default {
           password: this.password,
         },
       };
-
       await axios
         .post("http://localhost:4000/api/users/register", user)
         .then((data) => {
@@ -171,19 +171,34 @@ export default {
     },
 
     async postWorkingTime() {
-      const workingtime = {
-        workingtime: {
+      const user = localStorage.id;
+      const workingtimes = {
+        workingtimes: {
           start: this.start,
           end: this.end,
+          user: user,
         },
       };
       const headers = {
         Authorization: `Bearer ${localStorage.token}`,
       };
 
-      await axios.post("http://localhost:4000/api/workingtimes", workingtime, {
-        headers,
-      });
+      await axios
+        .post("http://localhost:4000/api/workingtimes", workingtimes, {
+          headers,
+        })
+        .then((response) => {
+          console.log(response);
+
+          window.location.reload();
+          setTimeout(() => {
+            this.sendAlert();
+          }, 2500);
+        })
+        /* eslint-disable */
+        .catch((error) => {
+          this.errorCredentials = true;
+        });
     },
   },
 };
