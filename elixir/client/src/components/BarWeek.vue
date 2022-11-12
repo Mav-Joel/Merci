@@ -74,7 +74,8 @@ export default {
   },
   data() {
     return {
-      workingtimes: null,
+      workingtime: [],
+
       chartData: {
         labels: [
           "Lundi",
@@ -100,28 +101,41 @@ export default {
     };
   },
 
-  Mounted() {
-    axios({
-      method: "get",
-      url: "http://localhost:4000/api/workingtimes",
-      format: "json",
-    }).then((response) => (this.workingtimes = response.data));
+  mounted() {
+    this.getWorkingTimes();
+    this.parseDate();
   },
 
   methods: {
-        getWorkingTimes() {
+    async parseDate() {
+      const hello = this.workingtime;
+      console.log("cccccccccccccccccc", hello);
+
+      for (let i = 0; i < hello.length; i++) {
+        console.log("hello");
+      }
+
+      // for (let i = 0; i < workingtime.length; i++) {
+      //   const start = workingtime.start;
+      //   console.log("hahahahahahaha", start);
+      // }
+      // const start = Date.parse(workingtime.start);
+    },
+
+    async getWorkingTimes() {
       const id = localStorage.id;
-      axios({
+      await axios({
         method: "get",
         url: `http://localhost:4000/api/workingtimes/${id}`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },
-      }).then((response) => (this.workingtime = response.data)),
-        console.log(this.workingtime);
+      }).then((response) => {
+        this.workingtime = response.data.data;
+        console.log("fresfsfsfsdfs", response);
+      });
     },
-
-  }
+  },
 };
 </script>

@@ -11,7 +11,6 @@
     </v-card-text>
 
     <MyCards />
-    <Timer />
     <BarWeek />
   </div>
 </template>
@@ -19,13 +18,11 @@
 <script>
 import BarWeek from "./BarWeek.vue";
 import MyCards from "./MyCards.vue";
-import Timer from "./Timer.vue";
 export default {
   name: "HomeView",
   components: {
     MyCards,
     BarWeek,
-    Timer,
   },
 };
 </script>
