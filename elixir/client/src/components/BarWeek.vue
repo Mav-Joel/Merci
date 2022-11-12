@@ -111,15 +111,9 @@ export default {
       const hello = this.workingtime;
       console.log("cccccccccccccccccc", hello);
 
-      for (let i = 0; i < hello.length; i++) {
-        console.log("hello");
-      }
+      const searchIndex = hello.findIndex((data) => data.start);
 
-      // for (let i = 0; i < workingtime.length; i++) {
-      //   const start = workingtime.start;
-      //   console.log("hahahahahahaha", start);
-      // }
-      // const start = Date.parse(workingtime.start);
+      console.log(searchIndex["start"], "effefessfsdfdsfsdfsdfsdf");
     },
 
     async getWorkingTimes() {
@@ -132,7 +126,7 @@ export default {
           Authorization: `Bearer ${localStorage.token}`,
         },
       }).then((response) => {
-        this.workingtime = response.data.data;
+        this.workingtime.push(response.data.data);
         console.log("fresfsfsfsdfs", response);
       });
     },
