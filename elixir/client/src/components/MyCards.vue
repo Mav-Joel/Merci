@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app id="inspire">
+    <v-app>
       <v-main>
         <v-container fluid fill-height>
           <v-layout align-center justify-center>

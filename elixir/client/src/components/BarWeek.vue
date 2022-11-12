@@ -77,18 +77,13 @@ export default {
       workingtimes: null,
       chartData: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
+          "Lundi",
+          "Mardi",
+          "Mercredi",
+          "Jeudi",
+          "Vendredi",
+          "Samedi",
+          "Dimanche",
         ],
         datasets: [
           {
@@ -112,5 +107,21 @@ export default {
       format: "json",
     }).then((response) => (this.workingtimes = response.data));
   },
+
+  methods: {
+        getWorkingTimes() {
+      const id = localStorage.id;
+      axios({
+        method: "get",
+        url: `http://localhost:4000/api/workingtimes/${id}`,
+        format: "json",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      }).then((response) => (this.workingtime = response.data)),
+        console.log(this.workingtime);
+    },
+
+  }
 };
 </script>
