@@ -75,22 +75,33 @@ export default {
   data() {
     return {
       workingtime: [],
+      week :[
+        "Lundi" ,
+        "Mardi" ,
+        "Mercredi" ,
+        "Jeudi" ,
+        "Vendredi" ,
+        "Samedi" ,
+        "Dimanche",
+      ],
+      days :{
+        "Lundi" : 0,
+        "Mardi" : 0,
+        "Mercredi" : 0,
+        "Jeudi" : 0,
+        "Vendredi" : 0,
+        "Samedi" : 0,
+        "Dimanche" : 0,
+      },
 
       chartData: {
-        labels: [
-          "Lundi",
-          "Mardi",
-          "Mercredi",
-          "Jeudi",
-          "Vendredi",
-          "Samedi",
-          "Dimanche",
-        ],
+        labels: [],
+
         datasets: [
           {
             label: "Data One",
             backgroundColor: "#f87979",
-            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
+            data: [],
           },
         ],
       },
@@ -103,18 +114,9 @@ export default {
 
   mounted() {
     this.getWorkingTimes();
-    this.parseDate();
   },
 
   methods: {
-    async parseDate() {
-      const hello = this.workingtime;
-      console.log("cccccccccccccccccc", hello);
-
-      const searchIndex = hello.findIndex((data) => data.start);
-
-      console.log(searchIndex["start"], "effefessfsdfdsfsdfsdfsdf");
-    },
 
     async getWorkingTimes() {
       const id = localStorage.id;
@@ -126,8 +128,26 @@ export default {
           Authorization: `Bearer ${localStorage.token}`,
         },
       }).then((response) => {
-        this.workingtime.push(response.data.data);
-        console.log("fresfsfsfsdfs", response);
+        const date = response.data.data;
+
+        date.forEach(element => { 
+            const day = new Date(element.start).getDay()
+            const startDate = new Date(element.start)
+            const endDate = new Date(element.end)
+            const displayDate = endDate.getHours() - startDate.getHours()
+            const delta = this.days[this.week[day]]
+            this.days[this.week[day]] = displayDate + delta 
+            
+        });
+
+        for (const [key, value] of Object.entries(this.days)) {
+          console.log(key, value);
+          if (value != 0) {
+            this.chartData.labels.push(key)
+            this.chartData.datasets[0].data.push(value)
+          }
+        }
+
       });
     },
   },
