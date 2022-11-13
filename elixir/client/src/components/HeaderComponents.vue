@@ -4,8 +4,8 @@
       <v-toolbar dark tabs flat color="indigo">
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-tab @click="goToHome()">
-          <v-toolbar-title>Working Time</v-toolbar-title></v-tab
-        >
+          <v-toolbar-title>Working Time</v-toolbar-title>
+        </v-tab>
         <v-spacer></v-spacer>
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
@@ -73,7 +73,7 @@ export default {
     LogOut() {
       axios({
         method: "post",
-        url: `http://localhost:4000/api/users/logout`,
+        url: `http://18.233.170.155:4000/api/users/logout`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,

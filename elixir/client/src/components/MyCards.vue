@@ -14,16 +14,10 @@
                         <p>{{ user.email }}</p>
                         <br />
                       </v-list-item-title>
-                      <v-list-item-subtitle
-                        >Greyhound divisely hello coldly
-                        fonwderfully</v-list-item-subtitle
-                      >
+                      <v-list-item-subtitle>Greyhound divisely hello coldly
+                        fonwderfully</v-list-item-subtitle>
                     </v-list-item-content>
-                    <v-list-item-avatar
-                      tile
-                      size="80"
-                      color="grey"
-                    ></v-list-item-avatar>
+                    <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
                   </v-list-item>
                   <v-card-actions>
                     <v-btn outlined rounded text> Start of you're day </v-btn>
@@ -57,7 +51,7 @@ export default {
     console.log("1", id);
     axios({
       method: "get",
-      url: `http://localhost:4000/api/users/${localStorage.id}`,
+      url: `http://18.233.170.155:4000/api/users/${localStorage.id}`,
       format: "json",
       headers: {
         Authorization: `Bearer ${localStorage.token}`,

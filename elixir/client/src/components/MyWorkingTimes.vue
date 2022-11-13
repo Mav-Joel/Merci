@@ -21,23 +21,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="workingtime in workingtime.data"
-                v-bind:key="workingtime.id"
-              >
+              <tr v-for="workingtime in workingtime.data" v-bind:key="workingtime.id">
                 <td>{{ workingtime["id"] }}</td>
                 <td>{{ workingtime["start"] }}</td>
                 <td>{{ workingtime["end"] }}</td>
-                <UpdateModal :identifier='workingtime["id"]'/>
+                <UpdateModal :identifier='workingtime["id"]' />
 
-                <v-btn
-                  @click="deleteWorkingTime(workingtime.id)"
-                  class="mx-2"
-                  fab
-                  dark
-                  small
-                  color="primary"
-                >
+                <v-btn @click="deleteWorkingTime(workingtime.id)" class="mx-2" fab dark small color="primary">
                   <v-icon dark> mdi-minus </v-icon>
                 </v-btn>
               </tr>
@@ -79,7 +69,7 @@ export default {
       const id = localStorage.id;
       axios({
         method: "get",
-        url: `http://localhost:4000/api/workingtimes/${id}`,
+        url: `http://18.233.170.155:4000/api/workingtimes/${id}`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -90,7 +80,7 @@ export default {
     deleteWorkingTime(id) {
       axios({
         method: "delete",
-        url: `http://localhost:4000/api/workingtimes/${id}`,
+        url: `http://18.233.170.155:4000/api/workingtimes/${id}`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -100,4 +90,6 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+
+</style>
