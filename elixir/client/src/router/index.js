@@ -6,6 +6,7 @@ import LoginPage from "../components/LoginPage.vue";
 import registerPage from "../components/RegisterPage.vue";
 import MyProfileAdmin from "../components/MyProfileAdmin.vue";
 import MyWorkingTimes from "../components/MyWorkingTimes.vue";
+
 // import FooterPage from "../views/FooterPage";
 
 Vue.use(VueRouter);
@@ -21,11 +22,7 @@ const routes = [
     name: "/MyWorkingTimes",
     component: MyWorkingTimes,
   },
-  // {
-  //   path: "/login",
-  //   name: "login",
-  //   component: LoginPage,
-  // },
+
   {
     path: "/login",
     name: "beforeLog",

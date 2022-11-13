@@ -44,6 +44,7 @@
             </v-flex>
           </v-layout>
         </v-container>
+        <CreationModal />,
       </v-main>
     </v-app>
   </div>
@@ -51,12 +52,16 @@
 
 <script>
 import axios from "axios";
+import CreationModal from "@/components/CreationModal.vue";
 export default {
   data() {
     return {
       user: [],
       team: [],
     };
+  },
+  components: {
+    CreationModal,
   },
 
   mounted() {

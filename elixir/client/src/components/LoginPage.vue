@@ -69,6 +69,7 @@ export default {
           localStorage.token = data.access_token;
           localStorage.id = data.userId;
           localStorage.name = data.username;
+          localStorage.role = data.role;
           window.location.reload();
           this.router.push("/");
         })

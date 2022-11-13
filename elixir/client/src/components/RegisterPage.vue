@@ -67,7 +67,7 @@ export default {
       email: this.email,
       username: this.username,
       password: this.password,
-      role: "user",
+      role: "",
       team: 1,
     };
   },

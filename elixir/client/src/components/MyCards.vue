@@ -102,7 +102,6 @@ export default {
 
       })
     },
-
     stopClocks() {
       const headers = {
         Authorization: `Bearer ${localStorage.token}`,

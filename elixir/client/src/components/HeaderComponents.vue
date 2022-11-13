@@ -20,7 +20,11 @@
               <v-tab v-if="hidden" @click="goToProfil()">
                 My Collabarators
               </v-tab>
-              <v-tab v-if="hidden" @click="goToAdmin()"> {{ name }} </v-tab>
+              <div class="admin">
+                <v-tab v-if="hidden" @click="goToAdmin()">
+                  {{ name }}
+                </v-tab>
+              </div>
               <v-tab v-if="hidden" @click="LogOut()"> LogOut </v-tab>
               <v-tabs-slider color="pink"></v-tabs-slider>
             </v-tabs>
@@ -31,7 +35,6 @@
   </div>
 </template>
 <script>
-// import router from "@/router";
 import axios from "axios";
 
 export default {
@@ -43,12 +46,18 @@ export default {
     name: localStorage.name,
     token: localStorage.token,
     id: localStorage.id,
+    role: localStorage.role,
   }),
   mounted() {
     const token = localStorage.token;
     if (token) {
       this.hidden = true;
       this.hidden_1 = false;
+    }
+
+    const role = localStorage.role;
+    if (role === "user") {
+      document.querySelector(".admin").style.display = "none";
     }
   },
   methods: {
