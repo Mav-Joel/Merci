@@ -71,7 +71,7 @@ export default {
     LogOut() {
       axios({
         method: "post",
-        url: `http://18.233.170.155:4000/api/users/logout`,
+        url: `http://localhost:4000/api/users/logout`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,

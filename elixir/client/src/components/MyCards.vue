@@ -52,8 +52,8 @@ export default {
         email: "email",
       },
 
-      time: "",
-      status: "",
+      time: new Date(),
+      status: false,
     };
   },
 
@@ -63,7 +63,7 @@ export default {
     console.log("1", id);
     axios({
       method: "get",
-      url: `http://18.233.170.155:4000/api/users/${localStorage.id}`,
+      url: `http://localhost:4000/api/users/${localStorage.id}`,
       format: "json",
       headers: {
         Authorization: `Bearer ${localStorage.token}`,
