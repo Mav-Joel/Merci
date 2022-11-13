@@ -54,7 +54,14 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn margin-top="25%" color="primary" dark v-bind="attrs" v-on="on">
+          <v-btn
+            id="button"
+            margin-top="25%"
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
             Create team
           </v-btn>
         </template>
@@ -166,6 +173,13 @@ export default {
       user: "",
       name: "",
     };
+  },
+
+  mounted() {
+    const role = localStorage.role;
+    if (role === "user") {
+      document.querySelector("#button").style.display = "none";
+    }
   },
 
   methods: {
