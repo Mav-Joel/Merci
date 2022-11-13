@@ -15,10 +15,22 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field id="start" v-model="start" label="Start*" type="start" required></v-text-field>
+                  <v-text-field
+                    id="start"
+                    v-model="start"
+                    label="Start*"
+                    type="start"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field id="end" v-model="end" label="End*" type="end" required></v-text-field>
+                  <v-text-field
+                    id="end"
+                    v-model="end"
+                    label="End*"
+                    type="end"
+                    required
+                  ></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
@@ -53,13 +65,29 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field id="username" v-model="username" label="Username*" required></v-text-field>
+                  <v-text-field
+                    id="username"
+                    v-model="username"
+                    label="Username*"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field id="email" v-model="email" label="Email*" required></v-text-field>
+                  <v-text-field
+                    id="email"
+                    v-model="email"
+                    label="Email*"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field id="password" v-model="password" label="Password*" type="password" required>
+                  <v-text-field
+                    id="password"
+                    v-model="password"
+                    label="Password*"
+                    type="password"
+                    required
+                  >
                   </v-text-field>
                 </v-col>
               </v-row>

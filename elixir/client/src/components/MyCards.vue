@@ -56,8 +56,8 @@ export default {
       out: 0,
       clocked: "Not clocked in",
 
-      time: "",
-      status: "",
+      time: new Date(),
+      status: false,
     };
   },
 

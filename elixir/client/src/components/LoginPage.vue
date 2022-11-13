@@ -11,9 +11,20 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
-                    <v-text-field v-model="email" name="Email" label="Email" type="text">
+                    <v-text-field
+                      v-model="email"
+                      name="Email"
+                      label="Email"
+                      type="text"
+                    >
                     </v-text-field>
-                    <v-text-field id="password" name="password" label="Password" v-model="password" type="password">
+                    <v-text-field
+                      id="password"
+                      name="password"
+                      label="Password"
+                      v-model="password"
+                      type="password"
+                    >
                     </v-text-field>
                   </v-form>
                 </v-card-text>
@@ -31,7 +42,7 @@
 </template>
 
 <script>
-import router from "@/router";
+// import router from "@/router";
 import axios from "axios";
 
 export default {
@@ -58,14 +69,12 @@ export default {
           localStorage.token = data.access_token;
           localStorage.id = data.userId;
           localStorage.name = data.username;
-
-          router.push("/");
+          window.location.reload();
+          this.router.push("/");
         })
         .catch(function (error) {
           console.log(error.toJSON());
         });
-
-      this.$router.push("/");
     },
   },
 };
