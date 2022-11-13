@@ -24,10 +24,7 @@
                                 <br />
                                 {{ user["username"] }}
                               </v-list-item-title>
-                              <v-list-item-subtitle
-                                >Greyhound divisely hello coldly
-                                fonwderfully</v-list-item-subtitle
-                              >
+                              <v-list-item-subtitle></v-list-item-subtitle>
                             </v-list-item-content>
                             <v-list-item-avatar
                               tile
@@ -67,7 +64,7 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http:/localhost:4000/api/users/",
+      url: "http://localhost:4000/api/users/",
       format: "json",
     }).then((response) => (this.user = response.data)),
       axios({
