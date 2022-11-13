@@ -54,12 +54,12 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://localhost:4000/api/users/",
+      url: "http:/18.233.170.155:4000/api/users/",
       format: "json",
     }).then((response) => (this.user = response.data)),
       axios({
         method: "get",
-        url: "http://localhost:4000/api/team",
+        url: "http://18.233.170.155:4000/api/team",
         format: "json",
       }).then((response) => (this.team = response.data));
   },
@@ -74,5 +74,3 @@ export default {
   flex-wrap: nowrap;
 }
 </style>
-
-
