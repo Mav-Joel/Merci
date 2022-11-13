@@ -11,9 +11,20 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
-                    <v-text-field v-model="email" name="Email" label="Email" type="text">
+                    <v-text-field
+                      v-model="email"
+                      name="Email"
+                      label="Email"
+                      type="text"
+                    >
                     </v-text-field>
-                    <v-text-field id="password" name="password" label="Password" v-model="password" type="password">
+                    <v-text-field
+                      id="password"
+                      name="password"
+                      label="Password"
+                      v-model="password"
+                      type="password"
+                    >
                     </v-text-field>
                   </v-form>
                 </v-card-text>
@@ -49,7 +60,7 @@ export default {
       console.log(this.password);
 
       axios
-        .post("http://18.233.170.155:4000/api/users/login", {
+        .post("http://localhost:4000/api/users/login", {
           email: this.email,
           password: this.password,
         })

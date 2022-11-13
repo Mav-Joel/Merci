@@ -13,7 +13,12 @@
             <tr v-for="user in user.data" v-bind:key="user.username">
               <td>{{ user["email"] }}</td>
               <td>{{ user["username"] }}</td>
-              <v-btn class="ma-1" color="error" plain @click="deleteCustomer(user)">
+              <v-btn
+                class="ma-1"
+                color="error"
+                plain
+                @click="deleteCustomer(user)"
+              >
                 Delete
               </v-btn>
               <UpdateModal :identifier="user['id']" />
@@ -35,7 +40,6 @@ export default {
   data() {
     return {
       user: [],
-  
     };
   },
   components: {
@@ -46,7 +50,7 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://18.233.170.155:4000/api/users/",
+      url: "http://localhost:4000/api/users/",
       format: "json",
     }).then((response) =>
       response ? (this.user = response.data) : console.log("yikers")
@@ -56,7 +60,7 @@ export default {
     deleteCustomer(user) {
       axios({
         method: "delete",
-        url: `http://18.233.170.155:4000/api/users/`,
+        url: `http://localhost:4000/api/users/`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -73,7 +77,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
-
+<style></style>

@@ -6,14 +6,16 @@
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4>
               <div class="justify-center">
-                <v-card class=" justify-center">
+                <v-card class="justify-center">
                   <div class="container">
                     <div class="card">
                       <div class="imgBx">
-                        <img src="file:///C:/Users/barba/OneDrive/Bureau/1077114.png">
+                        <img
+                          src="file:///C:/Users/barba/OneDrive/Bureau/1077114.png"
+                        />
                       </div>
                       <div class="contentBx">
-                        <h2>Name </h2>
+                        <h2>Name</h2>
                         <p>{{ user.username }}</p>
                         <p>{{ user.email }}</p>
                         <p>{{ out }} hours</p>
@@ -27,7 +29,6 @@
                       </div>
                     </div>
                   </div>
-
                 </v-card>
               </div>
             </v-flex>
@@ -56,11 +57,10 @@ export default {
   },
 
   mounted() {
-
-    localStorage.present = false
+    localStorage.present = false;
     axios({
       method: "get",
-      url: `http://18.233.170.155:4000/api/users/${localStorage.id}`,
+      url: `http://localhost:4000/api/users/${localStorage.id}`,
       format: "json",
       headers: {
         Authorization: `Bearer ${localStorage.token}`,
@@ -80,21 +80,26 @@ export default {
       };
 
       const milliSecDate = new Date().getTime();
-      const currentTime = new Date(milliSecDate)
-      console.log(currentTime)
-      localStorage.start = currentTime.getHours()
+      const currentTime = new Date(milliSecDate);
+      console.log(currentTime);
+      localStorage.start = currentTime.getHours();
 
-      axios.post('http://18.233.170.155:4000/api/clocks/', {
-        clock: {
-          time: currentTime,
-          status: true,
-          user: localStorage.id
-        }
-      }, { headers }).then(({ data }) => {
-        console.log(data)
-        this.clocked = "Clocked in"
-
-      })
+      axios
+        .post(
+          "http://localhost:4000/api/clocks/",
+          {
+            clock: {
+              time: currentTime,
+              status: true,
+              user: localStorage.id,
+            },
+          },
+          { headers }
+        )
+        .then(({ data }) => {
+          console.log(data);
+          this.clocked = "Clocked in";
+        });
     },
     stopClocks() {
       const headers = {
@@ -102,19 +107,25 @@ export default {
       };
 
       const milliSecDate = new Date().getTime();
-      const currentTime = new Date(milliSecDate)
-      this.out = currentTime.getHours() - localStorage.start
+      const currentTime = new Date(milliSecDate);
+      this.out = currentTime.getHours() - localStorage.start;
 
-      axios.post('http://18.233.170.155:4000/api/clocks/', {
-        clock: {
-          time: currentTime,
-          status: false,
-          user: localStorage.id
-        }
-      }, { headers }).then(({ data }) => {
-        console.log(data)
-        this.clocked = "Clocked out"
-      })
+      axios
+        .post(
+          "http://localhost:4000/api/clocks/",
+          {
+            clock: {
+              time: currentTime,
+              status: false,
+              user: localStorage.id,
+            },
+          },
+          { headers }
+        )
+        .then(({ data }) => {
+          console.log(data);
+          this.clocked = "Clocked out";
+        });
     },
   },
 };
@@ -132,13 +143,10 @@ export default {
   min-height: 5vh;
 }
 
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
-
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -148,18 +156,16 @@ body {
   grid-column: 1 / span 2;
 }
 
-
 .container .card {
   position: relative;
   width: 370px;
   height: 500px;
   background: #232323;
   border-radius: 20px;
-
 }
 
 .container .card:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -181,7 +187,7 @@ body {
   font-size: 12em;
   font-weight: 800;
   font-style: italic;
-  color: rgba(255, 255, 25, 0.05)
+  color: rgba(255, 255, 25, 0.05);
 }
 
 .container .card .imgBx {
@@ -197,7 +203,6 @@ body {
 .container .card:hover .imgBx {
   top: 0%;
   transform: translateY(0%);
-
 }
 
 .container .card .imgBx img {
@@ -293,6 +298,5 @@ body {
   opacity: 1;
   transform: translateY(0px);
   transition-delay: 0.75s;
-
 }
 </style>
