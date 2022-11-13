@@ -15,7 +15,7 @@
                     </v-text-field>
                     <v-text-field v-model="username" name="Username" label="Username" type="text">
                     </v-text-field>
-                    <v-text-field id="password" name="password" label="Password" type="password" v-model="passwo  rd">
+                    <v-text-field id="password" name="password" label="Password" type="password" v-model="password">
                     </v-text-field>
                   </v-form>
                   <v-form>

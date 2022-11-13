@@ -1,7 +1,16 @@
 <template>
   <div id="app">
-    <Bar :chart-options="chartOptions" :chart-data="chart  Data" :chart-id="chartId" :dataset-id-key="datasetIdKey"
-      :plugins="plugins" :css-classes="cssClasses" :styles="styles" :width="width" :height="height" />
+    <Bar
+      :chart-options="chartOptions"
+      :chart-data="chartData"
+      :chart-id="chartId"
+      :dataset-id-key="datasetIdKey"
+      :plugins="plugins"
+      :css-classes="cssClasses"
+      :styles="styles"
+      :width="width"
+      :height="height"
+    />
   </div>
 </template>
 
@@ -66,23 +75,23 @@ export default {
   data() {
     return {
       workingtime: [],
-      week :[
-        "Lundi" ,
-        "Mardi" ,
-        "Mercredi" ,
-        "Jeudi" ,
-        "Vendredi" ,
-        "Samedi" ,
+      week: [
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
         "Dimanche",
       ],
-      days :{
-        "Lundi" : 0,
-        "Mardi" : 0,
-        "Mercredi" : 0,
-        "Jeudi" : 0,
-        "Vendredi" : 0,
-        "Samedi" : 0,
-        "Dimanche" : 0,
+      days: {
+        Lundi: 0,
+        Mardi: 0,
+        Mercredi: 0,
+        Jeudi: 0,
+        Vendredi: 0,
+        Samedi: 0,
+        Dimanche: 0,
       },
 
       chartData: {
@@ -108,7 +117,6 @@ export default {
   },
 
   methods: {
-
     async getWorkingTimes() {
       const id = localStorage.id;
       await axios({
@@ -121,23 +129,21 @@ export default {
       }).then((response) => {
         const date = response.data.data;
 
-        date.forEach(element => { 
-            const day = new Date(element.start).getDay()
-            const startDate = new Date(element.start)
-            const endDate = new Date(element.end)
-            const displayDate = endDate.getHours() - startDate.getHours()
-            const delta = this.days[this.week[day]]
-            this.days[this.week[day]] = displayDate + delta 
-            
+        date.forEach((element) => {
+          const day = new Date(element.start).getDay();
+          const startDate = new Date(element.start);
+          const endDate = new Date(element.end);
+          const displayDate = endDate.getHours() - startDate.getHours();
+          const delta = this.days[this.week[day]];
+          this.days[this.week[day]] = displayDate + delta;
         });
 
         for (const [key, value] of Object.entries(this.days)) {
           if (value != 0) {
-            this.chartData.labels.push(key)
-            this.chartData.datasets[0].data.push(value)
+            this.chartData.labels.push(key);
+            this.chartData.datasets[0].data.push(value);
           }
         }
-
       });
     },
   },
