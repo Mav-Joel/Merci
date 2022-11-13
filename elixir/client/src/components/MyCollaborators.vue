@@ -11,9 +11,7 @@
                 <div v-for="team in team.data" v-bind:key="team.id">
                   <p>TEAM : {{ team["name"] }}</p>
                   <div v-for="user in user.data" v-bind:key="user.id">
-                    <div
-                      v-if="team.id === user.team && user.role === user"
-                    ></div>
+                    <div v-if="team.id === user.team && user.role === user"></div>
                     <div v-if="team.id === user.team">
                       <div class="card-user">
                         <v-card class="mx-auto" max-width="344" outlined>
@@ -24,16 +22,10 @@
                                 <br />
                                 {{ user["username"] }}
                               </v-list-item-title>
-                              <v-list-item-subtitle
-                                >Greyhound divisely hello coldly
-                                fonwderfully</v-list-item-subtitle
-                              >
+                              <v-list-item-subtitle>Greyhound divisely hello coldly
+                                fonwderfully</v-list-item-subtitle>
                             </v-list-item-content>
-                            <v-list-item-avatar
-                              tile
-                              size="80"
-                              color="grey"
-                            ></v-list-item-avatar>
+                            <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
                           </v-list-item>
                         </v-card>
                       </div>
@@ -62,12 +54,12 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://localhost:4000/api/users/",
+      url: "http://18.233.170.155:4000/api/users/",
       format: "json",
     }).then((response) => (this.user = response.data)),
       axios({
         method: "get",
-        url: "http://localhost:4000/api/team",
+        url: "http://18.233.170.155:4000/api/team",
         format: "json",
       }).then((response) => (this.team = response.data));
   },

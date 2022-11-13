@@ -1,16 +1,7 @@
 <template>
   <div id="app">
-    <Bar
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    />
+    <Bar :chart-options="chartOptions" :chart-data="chart  Data" :chart-id="chartId" :dataset-id-key="datasetIdKey"
+      :plugins="plugins" :css-classes="cssClasses" :styles="styles" :width="width" :height="height" />
   </div>
 </template>
 
@@ -122,7 +113,7 @@ export default {
       const id = localStorage.id;
       await axios({
         method: "get",
-        url: `http://localhost:4000/api/workingtimes/${id}`,
+        url: `http://18.233.170.155:4000/api/workingtimes/${id}`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
