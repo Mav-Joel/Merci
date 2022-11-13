@@ -1,16 +1,10 @@
 <template>
   <div id="app">
-    <Bar
-      :chart-options="chartOptions"
-      :chart-data="chartData"
-      :chart-id="chartId"
-      :dataset-id-key="datasetIdKey"
-      :plugins="plugins"
-      :css-classes="cssClasses"
-      :styles="styles"
-      :width="width"
-      :height="height"
-    />
+    <Bar :chart-options="chartOptions" :chart-data="chartData" :chart-id="chartId" :dataset-id-key="datasetIdKey"
+      :plugins="plugins" :css-classes="cssClasses" :styles="styles" :width="width" :height="height" />
+
+    <Bar :chart-options="chartOptions" :chart-data="chartData" :chart-id="chartId" :dataset-id-key="datasetIdKey"
+      :plugins="plugins" :css-classes="cssClasses" :styles="styles" :width="width" :height="height" />
   </div>
 </template>
 
@@ -34,7 +28,7 @@ ChartJS.register(
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
 );
 
 export default {
@@ -65,7 +59,7 @@ export default {
     },
     styles: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     plugins: {
       type: Array,
@@ -85,13 +79,13 @@ export default {
         "Dimanche",
       ],
       days: {
-        Lundi: 0,
-        Mardi: 0,
-        Mercredi: 0,
-        Jeudi: 0,
-        Vendredi: 0,
-        Samedi: 0,
-        Dimanche: 0,
+        "Lundi": 0,
+        "Mardi": 0,
+        "Mercredi": 0,
+        "Jeudi": 0,
+        "Vendredi": 0,
+        "Samedi": 0,
+        "Dimanche": 0,
       },
 
       chartData: {
@@ -121,7 +115,7 @@ export default {
       const id = localStorage.id;
       await axios({
         method: "get",
-        url: `http://localhost:4000/api/workingtimes/${id}`,
+        url: `http://18.233.170.155:4000/api/workingtimes/${id}`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -136,6 +130,7 @@ export default {
           const displayDate = endDate.getHours() - startDate.getHours();
           const delta = this.days[this.week[day]];
           this.days[this.week[day]] = displayDate + delta;
+
         });
 
         for (const [key, value] of Object.entries(this.days)) {
@@ -146,6 +141,6 @@ export default {
         }
       });
     },
-  },
+  }
 };
 </script>

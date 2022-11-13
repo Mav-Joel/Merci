@@ -5,20 +5,15 @@
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-left">Name</th>
-              <th class="text-left">Calories</th>
+              <th class="text-left">Mail</th>
+              <th class="text-left">UserNames</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="user in user.data" v-bind:key="user.username">
               <td>{{ user["email"] }}</td>
               <td>{{ user["username"] }}</td>
-              <v-btn
-                class="ma-1"
-                color="error"
-                plain
-                @click="deleteCustomer(user)"
-              >
+              <v-btn class="ma-1" color="error" plain @click="deleteCustomer(user)">
                 Delete
               </v-btn>
               <UpdateModal :identifier="user['id']" />
@@ -51,7 +46,7 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://localhost:4000/api/users/",
+      url: "http://18.233.170.155:4000/api/users/",
       format: "json",
     }).then((response) =>
       response ? (this.user = response.data) : console.log("yikers")
@@ -61,7 +56,7 @@ export default {
     deleteCustomer(user) {
       axios({
         method: "delete",
-        url: `http://localhost:4000/api/users/`,
+        url: `http://18.233.170.155:4000/api/users/`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -78,4 +73,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
+
