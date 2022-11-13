@@ -53,7 +53,7 @@ export default {
   methods: {
     postRegister() {
       
-      axios.post('http://18.233.170.155:4000/api/users/register', {
+      axios.post('http://localhost:4000/api/users/register', {
         user: {
           email: this.email,
           username: this.username,

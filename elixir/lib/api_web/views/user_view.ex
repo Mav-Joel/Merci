@@ -25,7 +25,8 @@ defmodule ApiWeb.UserView do
    %{
     access_token: token.access_token,
     userId: token.userId,
-    username: token.username
+    username: token.username,
+    role: token.role
    }
   end
 end

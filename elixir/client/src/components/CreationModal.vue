@@ -112,7 +112,7 @@ export default {
         },
       };
       await axios
-        .post("http://18.233.170.155:4000/api/users/register", user)
+        .post("http://localhost:4000/api/users/register", user)
         .then((data) => {
           this.message = data.data.message;
           this.errorCredentials = false;
@@ -141,7 +141,7 @@ export default {
       };
 
       await axios
-        .post("http://18.233.170.155:4000/api/workingtimes", workingtimes, {
+        .post("http://localhost:4000/api/workingtimes", workingtimes, {
           headers,
         })
         .then((response) => {

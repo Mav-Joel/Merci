@@ -121,7 +121,7 @@ export default {
       const id = localStorage.id;
       await axios({
         method: "get",
-        url: `http://18.233.170.155:4000/api/workingtimes/${id}`,
+        url: `http://localhost:4000/api/workingtimes/${id}`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,

@@ -49,7 +49,7 @@ export default {
       console.log(this.password);
 
       axios
-        .post("http://18.233.170.155:4000/api/users/login", {
+        .post("http://localhost:4000/api/users/login", {
           email: this.email,
           password: this.password,
         })

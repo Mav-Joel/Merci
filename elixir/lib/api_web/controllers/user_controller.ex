@@ -34,7 +34,7 @@ defmodule ApiWeb.UserController do
     case Api.Guardian.exchange(refresh_token, "refresh", "access") do
       {:ok, _old, {access_token, _new}} ->
 
-      data = %{access_token: access_token, userId: nil, username: nil}
+      data = %{access_token: access_token, userId: nil, username: nil, role: nil}
         conn
         |> put_status(:created)
         |> render("token.json", user_token_info: data)
@@ -44,7 +44,7 @@ defmodule ApiWeb.UserController do
   defp handle_tokens(conn, user) do
     {:ok, access_token, _claims} = Api.Guardian.encode_and_sign(user, %{id: user.id}, token_type: "access", ttl: {1, :hour})
     {:ok, refresh_token, _claims} = Api.Guardian.encode_and_sign(user, %{id: user.id}, token_type: "refresh", ttl: {30, :day})
-    data = %{access_token: access_token, userId: user.id, username: user.username}
+    data = %{access_token: access_token, userId: user.id, username: user.username, role: user.role }
     conn
     |> put_status(:created)
     |> put_resp_header("location", Routes.user_path(conn, :show, user))

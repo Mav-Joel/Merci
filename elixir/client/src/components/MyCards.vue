@@ -12,6 +12,8 @@
                       <v-list-item-title class="text-h5 mb-1">
                         <p>{{ user.username }}</p>
                         <p>{{ user.email }}</p>
+                        <p>{{ out }} hours</p>
+                        <p>{{ clocked }}</p>
                         <br />
                       </v-list-item-title>
                       <v-list-item-subtitle
@@ -26,12 +28,12 @@
                     ></v-list-item-avatar>
                   </v-list-item>
                   <v-card-actions>
-                    <v-btn outlined rounded text @click="postClocks()">
+                    <v-btn outlined rounded text v-on:click="postClocks()" >
                       Start
                     </v-btn>
                   </v-card-actions>
                   <v-card-actions>
-                    <v-btn outlined rounded text> Stop </v-btn>
+                    <v-btn outlined rounded text v-on:click="stopClocks()" > Stop </v-btn>
                   </v-card-actions>
                 </v-card>
               </div>
@@ -51,19 +53,20 @@ export default {
         username: "username",
         email: "email",
       },
+      out: 0,
+      clocked: "Not clocked in",
 
       time: "",
       status: "",
     };
   },
 
-  mounted(id) {
-    this.getClocks();
-    id = localStorage.id;
-    console.log("1", id);
+  mounted() {
+    
+    localStorage.present = false
     axios({
       method: "get",
-      url: `http://18.233.170.155:4000/api/users/${localStorage.id}`,
+      url: `http://localhost:4000/api/users/${localStorage.id}`,
       format: "json",
       headers: {
         Authorization: `Bearer ${localStorage.token}`,
@@ -77,38 +80,48 @@ export default {
   },
 
   methods: {
-    getClocks() {
-      axios({
-        method: "get",
-        url: `http://localhost:4000/api/clocks`,
-        format: "json",
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      }).then(({ response }) => {
-        console.log(response);
-      });
+    postClocks() {
+      const headers = {
+        Authorization: `Bearer ${localStorage.token}`,
+      };
+
+      const milliSecDate = new Date().getTime();
+      const currentTime = new Date(milliSecDate)
+      console.log(currentTime)
+      localStorage.start = currentTime.getHours()
+
+      axios.post('http://localhost:4000/api/clocks/',{
+        clock: {
+            time: currentTime,
+            status: true,
+            user: localStorage.id
+          }
+      },{headers}).then(({ data }) => {
+        console.log(data)
+        this.clocked = "Clocked in"
+
+      })
     },
 
-    postClocks() {
-      const clockIn = {
-        clock: {
-          time: this.time,
-          status: this.status,
-          user: this.user,
-        },
+    stopClocks() {
+      const headers = {
+        Authorization: `Bearer ${localStorage.token}`,
       };
-      axios({
-        method: "post",
-        url: `http://localhost:4000/api/clocks`,
-        clockIn,
-        format: "json",
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      }).then(({ response }) => {
-        console.log(response);
-      });
+
+      const milliSecDate = new Date().getTime();
+      const currentTime = new Date(milliSecDate)
+      this.out = currentTime.getHours() - localStorage.start
+      
+      axios.post('http://localhost:4000/api/clocks/',{
+        clock: {
+            time: currentTime,
+            status: false,
+            user: localStorage.id
+          }
+      },{headers}).then(({ data }) => {
+        console.log(data)
+        this.clocked = "Clocked out"
+      })
     },
   },
 };

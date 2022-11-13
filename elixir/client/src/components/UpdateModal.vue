@@ -126,7 +126,7 @@ export default {
       
 
       axios
-        .put(`http://18.233.170.155:4000/api/workingtimes/${id}`, workingtime, {headers})
+        .put(`http://localhost:4000/api/workingtimes/${id}`, workingtime, {headers})
         .then((response) => console.log(response.data));
     },
 
@@ -144,7 +144,7 @@ export default {
       
 
       axios
-        .put(`http://18.233.170.155:4000/api/users/${id}`, user, {headers})
+        .put(`http://localhost:4000/api/users/${id}`, user, {headers})
         .then((response) => console.log(response.data));
     },
   },
@@ -155,11 +155,11 @@ export default {
       }
 
     axios
-      .get("http://18.233.170.155:4000/api/users/")
+      .get("http://localhost:4000/api/users/")
       .then((response) => (this.fuck = response.data));
     
       axios
-      .get("http://18.233.170.155:4000/api/workingtimes/", {headers})
+      .get("http://localhost:4000/api/workingtimes/", {headers})
       .then((response) => (this.workingtimes = response.data));
   },
   
