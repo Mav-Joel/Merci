@@ -46,7 +46,7 @@ export default {
   mounted() {
     axios({
       method: "get",
-      url: "http://localhost:4000/api/users/",
+      url: "http://18.233.170.155:4000/api/users/",
       format: "json",
     }).then((response) =>
       response ? (this.user = response.data) : console.log("yikers")
@@ -56,7 +56,7 @@ export default {
     deleteCustomer(user) {
       axios({
         method: "delete",
-        url: `http://localhost:4000/api/users/`,
+        url: `http://18.233.170.155:4000/api/users/`,
         format: "json",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,

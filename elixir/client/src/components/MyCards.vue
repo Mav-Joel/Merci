@@ -6,7 +6,7 @@
           <v-layout align-center justify-center>
             <v-flex xs12 sm8 md4>
               <div class="justify-center">
-                <v-card class="align-center justify-center">
+                <v-card class=" justify-center">
                   <div class="container">
                     <div class="card">
                       <div class="imgBx">
@@ -19,23 +19,11 @@
                         <p>{{ out }} hours</p>
                         <p>{{ clocked }}</p>
                         <br />
-                        <v-card-actions>
-                          <v-btn outlined rounded text v-on:click="postClocks()">
-                            Start
-                          </v-btn>
-                        </v-card-actions>
-                        <v-card-actions>
-                          <v-btn outlined rounded text v-on:click="stopClocks()"> Stop </v-btn>
-                        </v-card-actions>
-
                         <div class="color">
                           <h3>workingtime :</h3>
-                          <span></span>
-                          <span></span>
-                          <span></span>
                         </div>
-                        <a href="#">clock start</a>
-                        <a href="#">clock stop</a>
+                        <a href="#" v-on:click="postClocks()">Start </a>
+                        <a href="#" v-on:click="stopClocks()"> Stop </a>
                       </div>
                     </div>
                   </div>
@@ -72,7 +60,7 @@ export default {
     localStorage.present = false
     axios({
       method: "get",
-      url: `http://localhost:4000/api/users/${localStorage.id}`,
+      url: `http://18.233.170.155:4000/api/users/${localStorage.id}`,
       format: "json",
       headers: {
         Authorization: `Bearer ${localStorage.token}`,
@@ -96,7 +84,7 @@ export default {
       console.log(currentTime)
       localStorage.start = currentTime.getHours()
 
-      axios.post('http://localhost:4000/api/clocks/', {
+      axios.post('http://18.233.170.155:4000/api/clocks/', {
         clock: {
           time: currentTime,
           status: true,
@@ -118,7 +106,7 @@ export default {
       const currentTime = new Date(milliSecDate)
       this.out = currentTime.getHours() - localStorage.start
 
-      axios.post('http://localhost:4000/api/clocks/', {
+      axios.post('http://18.233.170.155:4000/api/clocks/', {
         clock: {
           time: currentTime,
           status: false,
@@ -151,25 +139,24 @@ export default {
 
 * {
   font-family: 'Poppins', sans-serif;
+
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-column: 1 / span 2;
 }
 
-.container {
-  position: relative;
-}
 
 .container .card {
   position: relative;
-  width: 320px;
-  height: 450px;
+  width: 370px;
+  height: 500px;
   background: #232323;
   border-radius: 20px;
-  overflow: hidden;
+
 }
 
 .container .card:before {
@@ -219,7 +206,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-25deg);
-  width: 270px;
+  width: 300px;
 }
 
 .container .card .contentBx {
@@ -289,7 +276,7 @@ body {
 
 .container .card .contentBx a {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin: 0 5px;
   background: #fff;
   border-radius: 4px;
