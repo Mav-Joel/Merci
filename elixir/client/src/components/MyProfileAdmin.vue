@@ -5,20 +5,15 @@
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-left">Name</th>
-              <th class="text-left">Calories</th>
+              <th class="text-left">Mail</th>
+              <th class="text-left">UserNames</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="user in user.data" v-bind:key="user.username">
               <td>{{ user["email"] }}</td>
               <td>{{ user["username"] }}</td>
-              <v-btn
-                class="ma-1"
-                color="error"
-                plain
-                @click="deleteCustomer(user)"
-              >
+              <v-btn class="ma-1" color="error" plain @click="deleteCustomer(user)">
                 Delete
               </v-btn>
               <UpdateModal :identifier="user['id']" />
@@ -78,4 +73,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
+
