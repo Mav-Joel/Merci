@@ -41,7 +41,7 @@ pipeline :api do
     #Users
     get "/users/:id", UserController, :show
     get "/users", UserController, :index
-    put "/users", UserController, :update
+    put "/users/:id", UserController, :update
     delete "/users", UserController, :delete
     post "/users/logout", UserController, :logout
     options "/users/logout", UserController, :options

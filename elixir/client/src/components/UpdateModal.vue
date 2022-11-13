@@ -17,36 +17,24 @@
             </v-btn>
           </template>
           <v-card>
-            <v-container v-for="fuck in fuck.data" v-bind:key="fuck.id">
-              <!-- <div v-if="fuck.id === id"> -->
+            <v-container v-for="workingtime in workingtimes.data" v-bind:key="workingtime.id">
+              <div v-if="workingtime.id === identifier">
               <v-card-title>
-                <span class="text-h5">User Profile</span>
+                <span class="text-h5">Workingtime</span>
               </v-card-title>
               <v-card-text>
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="fuck.start"
-                      label="Username*"
+                      v-model="workingtime.start"
+                      label="Start*"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="fuck.end"
-                      label="Email*"
+                      v-model="workingtime.end"
+                      label="End*"
                     ></v-text-field>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="fuck.password"
-                      label="Password*"
-                      type="password"
-                    ></v-text-field>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <v-text-field v-model="fuck.id" label="id*"> </v-text-field>
                   </v-col>
                 </v-row>
                 <small>*indicates required field</small>
@@ -59,12 +47,12 @@
                 <v-btn
                   color="blue darken-1"
                   text
-                  v-on:click="editCustomer(fuck.id, fuck)"
+                  v-on:click="editWorkingTime(workingtime.id,workingtime)"
                 >
                   Save
                 </v-btn>
               </v-card-actions>
-              <!-- </div> -->
+              </div>
             </v-container>
           </v-card>
         </v-dialog>
@@ -80,7 +68,7 @@
           </template>
           <v-card>
             <v-container v-for="fuck in fuck.data" v-bind:key="fuck.id">
-              <!-- <div v-if="fuck.id === id"> -->
+              <div v-if="fuck.id === identifier">
               <v-card-title>
                 <span class="text-h5">User Profile</span>
               </v-card-title>
@@ -128,7 +116,7 @@
                   Save
                 </v-btn>
               </v-card-actions>
-              <!-- </div> -->
+              </div>
             </v-container>
           </v-card>
         </v-dialog>
@@ -141,6 +129,8 @@
 import axios from "axios";
 
 export default {
+  props: ['identifier'],
+
   data() {
     return {
       dialog: false,
@@ -155,29 +145,56 @@ export default {
   },
 
   methods: {
+    editWorkingTime(id, worktime) {
+      const headers = {
+          Authorization: `Bearer ${localStorage.token}`,
+      }
+      const workingtime = {
+        workingtimes: {
+          start: worktime.start,
+          end: worktime.end,
+        },
+      };
+      
+
+      axios
+        .put(`http://localhost:4000/api/workingtimes/${id}`, workingtime, {headers})
+        .then((response) => console.log(response.data));
+    },
+
     editCustomer(id, fuck) {
-      console.log("1", id);
+      const headers = {
+          Authorization: `Bearer ${localStorage.token}`,
+      }
       const user = {
         user: {
           username: fuck.username,
           email: fuck.email,
           password: fuck.password,
-          id: fuck.id,
         },
       };
-      console.log("3", user);
+      
+
       axios
-        .put(`http://localhost:4000/api/users/${id}`, user)
+        .put(`http://localhost:4000/api/users/${id}`, user, {headers})
         .then((response) => console.log(response.data));
     },
   },
 
   mounted() {
+    const headers = {
+          Authorization: `Bearer ${localStorage.token}`,
+      }
+
     axios
       .get("http://localhost:4000/api/users/")
       .then((response) => (this.fuck = response.data));
-    console.log("4", this.fuck.data);
+    
+      axios
+      .get("http://localhost:4000/api/workingtimes/", {headers})
+      .then((response) => (this.workingtimes = response.data));
   },
+  
 };
 </script>
 

@@ -141,7 +141,6 @@ export default {
         });
 
         for (const [key, value] of Object.entries(this.days)) {
-          console.log(key, value);
           if (value != 0) {
             this.chartData.labels.push(key)
             this.chartData.datasets[0].data.push(value)

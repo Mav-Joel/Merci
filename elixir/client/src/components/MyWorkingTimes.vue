@@ -28,7 +28,8 @@
                 <td>{{ workingtime["id"] }}</td>
                 <td>{{ workingtime["start"] }}</td>
                 <td>{{ workingtime["end"] }}</td>
-                <UpdateModal />
+                <UpdateModal :identifier='workingtime["id"]'/>
+
                 <v-btn
                   @click="deleteWorkingTime(workingtime.id)"
                   class="mx-2"
