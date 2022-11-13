@@ -26,10 +26,12 @@
                     ></v-list-item-avatar>
                   </v-list-item>
                   <v-card-actions>
-                    <v-btn outlined rounded text> Start of you're day </v-btn>
+                    <v-btn outlined rounded text @click="postClocks()">
+                      Start
+                    </v-btn>
                   </v-card-actions>
                   <v-card-actions>
-                    <v-btn outlined rounded text> End of you're ay </v-btn>
+                    <v-btn outlined rounded text> Stop </v-btn>
                   </v-card-actions>
                 </v-card>
               </div>
@@ -53,6 +55,7 @@ export default {
   },
 
   mounted(id) {
+    this.getClocks();
     id = localStorage.id;
     console.log("1", id);
     axios({
@@ -68,6 +71,42 @@ export default {
 
       console.log(this.user);
     });
+  },
+
+  methods: {
+    getClocks() {
+      axios({
+        method: "get",
+        url: `http://localhost:4000/api/clocks`,
+        format: "json",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      }).then(({ response }) => {
+        console.log(response);
+      });
+    },
+
+    postClocks() {
+      const clockIn = {
+        clock: {
+          time: this.time,
+          status: this.status,
+          user: this.user,
+        },
+      };
+      axios({
+        method: "post",
+        url: `http://localhost:4000/api/clocks`,
+        clockIn,
+        format: "json",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      }).then(({ response }) => {
+        console.log(response);
+      });
+    },
   },
 };
 </script>

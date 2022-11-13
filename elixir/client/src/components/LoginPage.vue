@@ -75,7 +75,7 @@ export default {
           console.log(error.toJSON());
         });
 
-      this.$router.push("/home");
+      this.$router.push("/");
     },
   },
 };

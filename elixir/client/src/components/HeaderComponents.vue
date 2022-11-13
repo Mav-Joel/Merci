@@ -3,9 +3,7 @@
     <v-card id="lateral">
       <v-toolbar dark tabs flat color="indigo">
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        <v-tab @click="goToHome()">
-          <v-toolbar-title>Working Time</v-toolbar-title></v-tab
-        >
+        <v-tab> <v-toolbar-title>Working Time</v-toolbar-title></v-tab>
         <v-spacer></v-spacer>
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>

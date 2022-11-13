@@ -21,7 +21,7 @@
               >
                 Delete
               </v-btn>
-              <UpdateModal :identifier="user['id']"/>
+              <UpdateModal :identifier="user['id']" />
             </tr>
           </tbody>
         </template>
@@ -37,7 +37,6 @@ import CreationModal from "@/components/CreationModal.vue";
 import UpdateModal from "@/components/UpdateModal.vue";
 
 export default {
-
   data() {
     return {
       user: [],
