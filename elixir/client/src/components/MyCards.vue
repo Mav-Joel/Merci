@@ -10,14 +10,13 @@
                   <div class="container">
                     <div class="card">
                       <div class="contentBx">
-                        <h2>Name</h2>
-                        <p>{{ user.username }}</p>
+                        <h2>{{ user.username }}</h2>
                         <p>{{ user.email }}</p>
                         <p>{{ out }} hours</p>
                         <p>{{ clocked }}</p>
                         <br />
                         <div class="color">
-                          <h3>workingtime :</h3>
+                          <h3>Clock :</h3>
                         </div>
                         <a href="#" v-on:click="postClocks()">Start </a>
                         <a href="#" v-on:click="stopClocks()"> Stop </a>
