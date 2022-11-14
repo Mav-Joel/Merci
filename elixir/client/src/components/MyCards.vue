@@ -9,11 +9,6 @@
                 <v-card class="justify-center">
                   <div class="container">
                     <div class="card">
-                      <div class="imgBx">
-                        <img
-                          src="file:///C:/Users/barba/OneDrive/Bureau/1077114.png"
-                        />
-                      </div>
                       <div class="contentBx">
                         <h2>Name</h2>
                         <p>{{ user.username }}</p>

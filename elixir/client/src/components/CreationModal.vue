@@ -206,31 +206,7 @@ export default {
           this.errorCredentials = true;
         });
     },
-
-    async postTeam() {
-      const teams = {
-        team: {
-          name: this.name,
-        },
-      };
-
-      await axios
-        .post("http://localhost:4000/api/team", teams)
-        .then((response) => {
-          console.log(response);
-
-          window.location.reload();
-          setTimeout(() => {
-            this.sendAlert();
-          }, 2500);
-        })
-        /* eslint-disable */
-        .catch((error) => {
-          this.errorCredentials = true;
-        });
-    },
-  },
-  async postWorkingTime() {
+    async postWorkingTime() {
     const user = localStorage.id;
     const workingtimes = {
       workingtimes: {
@@ -259,6 +235,30 @@ export default {
       .catch((error) => {
         this.errorCredentials = true;
       });
+    },
+
+    async postTeam() {
+      const teams = {
+        team: {
+          name: this.name,
+        },
+      };
+
+      await axios
+        .post("http://localhost:4000/api/team", teams)
+        .then((response) => {
+          console.log(response);
+
+          window.location.reload();
+          setTimeout(() => {
+            this.sendAlert();
+          }, 2500);
+        })
+        /* eslint-disable */
+        .catch((error) => {
+          this.errorCredentials = true;
+        });
+    },
   },
 };
 </script>
